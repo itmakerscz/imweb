@@ -1,0 +1,92 @@
+/* Reveal animace */
+.card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1), 
+                transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card:hover .material-symbols-outlined {
+    transform: translateY(-10px) scale(1.05);
+}
+
+/* Hero animace */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-content {
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+@keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.hero-image {
+    animation: fadeInRight 1.2s ease-out 0.2s forwards;
+    opacity: 0;
+}
+
+/* Rotace textu */
+@keyframes rotateInfo {
+    0%, 20% { transform: translateY(0); opacity: 1; filter: blur(0); }
+    23% { opacity: 0; filter: blur(5px); }
+    25%, 45% { transform: translateY(-1.4em); opacity: 1; filter: blur(0); }
+    48% { opacity: 0; filter: blur(5px); }
+    50%, 70% { transform: translateY(-2.8em); opacity: 1; filter: blur(0); }
+    73% { opacity: 0; filter: blur(5px); }
+    75%, 95% { transform: translateY(-4.2em); opacity: 1; filter: blur(0); }
+    98% { opacity: 0; filter: blur(5px); }
+    100% { transform: translateY(0); opacity: 1; filter: blur(0); }
+}
+
+.rotating-text-wrapper {
+    display: block;
+    height: 1.4em;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+
+.rotating-text-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    animation: rotateInfo 12s infinite cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+.rotating-text-list li {
+    height: 1.4em;
+    line-height: 1.4;
+    color: var(--brand-red);
+    white-space: nowrap;
+}
+
+@keyframes coordinateFlicker {
+    0%, 100% { opacity: 0.4; transform: translateX(0); }
+    33% { opacity: 0.4; transform: translateX(0); }
+    34% { opacity: 0.2; transform: translateX(2px); }
+    35% { opacity: 0.4; transform: translateX(0); }
+    66% { opacity: 0.4; transform: translateX(0); }
+    67% { opacity: 0.1; transform: translateX(-1px); }
+    68% { opacity: 0.4; transform: translateX(0); }
+}
+
+.flicker-text {
+    animation: coordinateFlicker 6s linear infinite;
+}
