@@ -61,11 +61,16 @@ async function initApp() {
         const loadData = async () => {
             try {
                 const [dataRes, calRes, akceRes] = await Promise.all([fetch('data.json'), fetch('calendar.json'), fetch('akce.json')]);
-                const jsonData = await dataRes.json();
-                jsonData.vylety = jsonData.vylety.map(t => ({ ...t, showQR: false }));
+                
+                // Bezpečné parsování s defaultními hodnotami pro případ chyby
+                const jsonData = dataRes.ok ? await dataRes.json() : {};
+                if (jsonData.vylety) {
+                    jsonData.vylety = jsonData.vylety.map(t => ({ ...t, showQR: false }));
+                }
                 data.value = jsonData;
-                calendar.value = await calRes.json();
-                data.value.planovane_akce = await akceRes.json(); // Načtení akcí ze samostatného souboru
+                
+                calendar.value = calRes.ok ? await calRes.json() : {};
+                data.value.planovane_akce = akceRes.ok ? await akceRes.json() : [];
 
                 randomPhotos.value = [...data.value.restaurace_galerie].sort(() => 0.5 - Math.random()).slice(0, 3);
             } catch (err) { console.error("Chyba při načítání dat:", err); }

@@ -33,7 +33,13 @@ nav {
 .nav-links a { font-size: 0.9rem; font-weight: 600; transition: var(--transition); }
 .nav-links a:hover { color: var(--secondary); }
 .btn-res { background: var(--secondary); color: white !important; padding: 0.6rem 1.2rem; border-radius: 50px; font-weight: bold; box-shadow: 0 4px 15px rgba(217, 119, 6, 0.3); text-align: center; }
-.mobile-toggle { display: none; cursor: pointer; color: var(--primary); }
+
+.mobile-toggle { 
+    display: none; cursor: pointer; color: var(--primary); 
+    width: 44px; height: 44px; align-items: center; justify-content: center; 
+    user-select: none; -webkit-tap-highlight-color: transparent;
+}
+.mobile-toggle span { font-size: 2rem; }
 
 .hero {
     height: 100vh;
@@ -101,15 +107,23 @@ section { padding: 5rem 10%; }
 
 /* --- CALENDAR SECTION --- */
 .calendar-container { background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 800px; margin: 0 auto; }
-.calendar-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; gap: 1.5rem; }
+.calendar-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; gap: 1.5rem; min-height: 60px; }
 .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; text-align: center; }
 .calendar-weekday { font-weight: bold; color: var(--primary); font-size: 0.8rem; padding-bottom: 10px; }
 
 /* Zvýraznění sloupců pro sobotu a neděli */
-.calendar-grid > *:nth-child(7n-1), 
-.calendar-grid > *:nth-child(7n) { color: var(--secondary); }
+.calendar-weekday:nth-child(6), .calendar-weekday:nth-child(7),
+.calendar-day:nth-child(7n-1), .calendar-day:nth-child(7n) { color: var(--secondary); }
 
-.calendar-day { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; background: var(--bg-light); border-radius: 10px; font-size: 0.9rem; font-weight: 600; border: 1px solid transparent; transition: var(--transition); }
+.calendar-day { 
+    aspect-ratio: 1; 
+    min-height: 40px; /* Fallback pro prohlížeče bez podpory aspect-ratio */
+    display: flex; align-items: center; justify-content: center; 
+    background: var(--bg-light); border-radius: 10px; 
+    font-size: 0.9rem; font-weight: 600; border: 1px solid transparent; 
+    transition: var(--transition); 
+    cursor: pointer;
+}
 .calendar-day.other-month { opacity: 0.3; font-weight: 400; }
 .calendar-day:nth-child(7n-1), .calendar-day:nth-child(7n) { background-color: rgba(217, 119, 6, 0.04); }
 .calendar-day.holiday { color: #d32f2f !important; font-weight: 800; position: relative; }
@@ -149,17 +163,19 @@ input:focus, textarea:focus, select:focus { outline: none; border-color: var(--s
 footer { background: var(--primary); color: white; text-align: center; padding: 4rem 10%; margin-top: 4rem; }
 
 @media (max-width: 992px) {
-    section { padding: 4rem 6%; }
+    section { padding: 3rem 5%; }
     .mobile-toggle { display: flex; }
     .nav-links { 
         display: none; flex-direction: column; position: absolute; top: 70px; left: 0; 
-        width: 100%; background: white; padding: 2rem; box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+        width: 100%; background: white; padding: 2rem; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        z-index: 1001;
     }
     .nav-links.active { display: flex; }
     .hero-btns { flex-direction: column; align-items: center; }
     button.primary, button.outline { width: 100%; max-width: 300px; }
     .menu-grid, .contact-container, .form-row { grid-template-columns: 1fr; gap: 2rem; }
     .calendar-header { flex-direction: column; align-items: center; text-align: center; gap: 1.5rem; }
+    .calendar-container { padding: 1rem; }
     .calendar-header .custom-select { width: 100%; }
     .calendar-grid { gap: 4px; }
     .calendar-day { font-size: 0.8rem; }
