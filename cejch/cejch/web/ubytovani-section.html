@@ -1,0 +1,14 @@
+<section id="ubytovani">
+    <h2 class="section-title">Komfortní ubytování</h2>
+    <p class="section-subtitle">Vyberte si styl ubytování, který vám nejvíce vyhovuje.</p>
+    <div class="grid-3">
+        <div class="card" v-for="room in data.ubytovani" :key="room.title">
+            <span class="card-tag">{{ room.price }}</span>
+            <img :src="room.img" :alt="room.title" loading="lazy">
+            <div class="card-content">
+                <h3>{{ room.title }}</h3>
+                <p>{{ room.desc }}</p>
+            </div>
+        </div>
+    </div>
+</section>

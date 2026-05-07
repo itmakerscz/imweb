@@ -1,0 +1,22 @@
+<section id="akce" class="events-section">
+    <div class="container">
+        <h2 class="section-title">PLÁNOVANÉ AKCE</h2>
+        <p class="section-subtitle">Níže naleznete seznam všech naplánovaných akcí v našem rekreačním areálu.</p>
+        
+        <div class="events-grid" v-if="data.planovane_akce && data.planovane_akce.length > 0">
+            <article class="event-card" v-for="akce in data.planovane_akce" :key="akce.title">
+                <img :src="akce.img" :alt="akce.title" class="event-image">
+                <div class="event-content">
+                    <span class="event-date">{{ akce.date }}</span>
+                    <h3>{{ akce.title }}</h3>
+                    <p>{{ akce.desc }}</p>
+                </div>
+            </article>
+        </div>
+
+        <div v-else style="text-align: center; padding: 3rem; background: var(--white); border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); color: #666;">
+            <span class="material-icons-outlined" style="font-size: 3rem; display: block; margin-bottom: 1rem; opacity: 0.3;">event_busy</span>
+            <p style="font-size: 1.1rem; font-style: italic;">Momentálně neplánujeme žádné akce.</p>
+        </div>
+    </div>
+</section>

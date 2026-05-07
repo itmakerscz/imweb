@@ -4,12 +4,40 @@
     { "title": "Apartmány v hlavní budově", "desc": "Nově zrekonstruované pokoje s vlastním sociálním zařízením a výhledem do údolí.", "img": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=500&q=80", "price": "od 850 Kč" },
     { "title": "Skupinová ubytovna", "desc": "Cenově dostupné ubytování se společným zázemím. Perfektní pro školy a tábory.", "img": "https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=500&q=80", "price": "od 350 Kč" }
   ],
+  "restaurace_info": {
+    "provoz": "Jaro: Pá-So: 11:30 až 20:00, Ne: 11:30 až 18:00.",
+    "poznamka": "Aktuální nabídka pro termín 1.5. – 3.5. 2026",
+    "quote": "Naše burgery a domácí lívance si zamilujete."
+  },
   "menu": [
-    { "name": "Cejch Burger (hovězí, cheddar, slanina)", "price": "245 Kč" },
-    { "name": "Konfitované kachní stehno, zelí, knedlík", "price": "315 Kč" },
-    { "name": "Smažený sýr z lokální farmy, hranolky", "price": "195 Kč" },
-    { "name": "Domácí borůvkové knedlíky (3ks)", "price": "165 Kč" },
-    { "name": "Čepovaný speciál 11° (lokální pivovar)", "price": "52 Kč" }
+    { "name": "Bramborový krém s domácími škvarky", "price": "45 Kč", "desc": "Polévka je grunt!", "img": "https://cejch.cz/obr/jidelni-listek/polevka-vyvar.jpg" },
+    { "name": "Zvýhodněné menu", "price": "199 Kč", "desc": "Polévka a smažený sýr s hranolky a domácí tatarskou omáčkou.", "img": "https://cejch.cz/obr/jidelni-listek/zvyhodnene-menu.jpg" },
+    { "name": "Domácí grilovaná klobása s chlebem", "price": "130 Kč", "desc": "Grilovaná papriková klobáska s hrubozrnnou hořčicí, chlebem a čerstvým salátkem.", "img": "https://cejch.cz/obr/jidelni-listek/drevo.jpg" },
+    { "name": "Smažený sýr s hranolky a domácí tatarkou", "price": "185 Kč", "desc": "Dozlatova smažený sýr s hranolky a naší domácí tatarskou omáčkou.", "img": "https://cejch.cz/obr/jidelni-listek/smazeny-syr-2.jpg" },
+    { "name": "Kuřecí steak s grilovanou zeleninou", "price": "195 Kč", "desc": "Steak z kuřecího prsa s grilovanou zeleninou", "img": "https://cejch.cz/obr/jidelni-listek/drevo.jpg" },
+    { "name": "Texas steak s hranolky", "price": "230 Kč", "desc": "Grilovaný vepřový steak na dlouhém žebru, mírně mramorovaný podél kosti, podávaný se zlatavými hranolky a domácí tatarkou.", "img": "https://cejch.cz/obr/jidelni-listek/drevo.jpg" },
+    { "name": "Smažený kuřecí řízek", "price": "185 Kč", "desc": "Dozlatova smažený řízek z kuřecího prsa s petrželovým bramborem a měsíčkem citronu.", "img": "https://cejch.cz/obr/jidelni-listek/drevo.jpg" },
+    { "name": "Vepřové soté na kari", "price": "175 Kč", "desc": "Vepřové soté se zeleninou na kari, jasmínová rýže", "img": "https://cejch.cz/obr/jidelni-listek/drevo.jpg" },
+    { "name": "Kančí guláš s chlebem a cibulí", "price": "185 Kč", "desc": "Kančí gulášek, pomalu tažený do plné chuti, podávaný s čerstvým chlebem.", "img": "https://cejch.cz/obr/jidelni-listek/drevo.jpg" },
+    { "name": "Vegetariánský salát se sýrem Feta", "price": "185 Kč", "desc": "Křupavý ledový salát s čerstvou zeleninou, medovo-hořčičným dresinkem a vařeným vejcem.", "img": "https://cejch.cz/obr/jidelni-listek/grilovany-hermelin.jpg" },
+    { "name": "Vepřový karbenátek s bramborem", "price": "175 Kč", "desc": "Vepřový karbenátek z bio prasátka, vařený petrželový brambor, salát Coleslaw", "img": "https://cejch.cz/obr/jidelni-listek/drevo.jpg" }
+  ],
+  "restaurace_galerie": [
+    "https://cejch.cz/obr/restaurace/burger.jpg",
+    "https://cejch.cz/obr/restaurace/hovezi-rumpsteak.jpg",
+    "https://cejch.cz/obr/restaurace/smazeny-kvetak.jpg",
+    "https://cejch.cz/obr/restaurace/kynute-knedliky.jpg",
+    "https://cejch.cz/obr/restaurace/dezert-maliny.jpg",
+    "https://cejch.cz/obr/restaurace/veprovy-rizek.jpg",
+    "https://cejch.cz/obr/restaurace/rajska-omacka.jpg",
+    "https://cejch.cz/obr/restaurace/dezert-rolada.jpg",
+    "https://cejch.cz/obr/grilovany-salat-kure.jpg",
+    "https://cejch.cz/obr/veprove-koleno.jpg",
+    "https://cejch.cz/obr/grilovany-salat-kureci-palicky.jpg",
+    "https://cejch.cz/obr/grilovany-pstruh.jpg",
+    "https://cejch.cz/obr/grilovana-masita-zebra-2.jpg",
+    "https://cejch.cz/obr/jablecny-strudl-zmrzlina.jpg",
+    "https://cejch.cz/obr/grilovane-prso-zelenina.jpg"
   ],
   "sluzby": [
     { "title": "Školy v přírodě", "icon": "school", "desc": "Zajišťujeme stravu 5x denně, pitný režim a program s instruktory." },
@@ -17,14 +45,32 @@
     { "title": "Firemní akce", "icon": "groups", "desc": "Teambuilding, školení nebo firemní večírek. Máme sál s projektorem." }
   ],
   "vylety": [
-    { "title": "Hrad Kost", "dist": "4.5 km", "img": "https://images.unsplash.com/photo-1505832018823-50331d70d237?auto=format&fit=crop&w=500&q=80", "desc": "Jeden z nejzachovalejších gotických hradů v Čechách." },
-    { "title": "Drábské světničky", "dist": "8.0 km", "img": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=500&q=80", "desc": "Bývalá skalní pevnost nabízející dechberoucí výhledy." },
-    { "title": "Rybník Věžák", "dist": "6.5 km", "img": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=500&q=80", "desc": "Ikonický rybník se skalními věžemi přímo z hladiny." }
+    { "title": "Hrad Kost", "link": "hrad-kost", "dist": "4.5 km", "difficulty": "mírná", "img": "https://cejch.cz/obr/tipy-na-vylet/hrad-kost.jpg", "desc": "Gotický hrad byl vybudován na pískovcové skalní vyvýšenině, netypicky však nikoliv vysoko nad okolním terénem, ale v údolí, dokonale ukryt v hlubokých lesích." },
+    { "title": "Údolí Plakánek", "link": "udoli-plakanek", "dist": "4.2 km", "difficulty": "mírná", "img": "https://cejch.cz/obr/tipy-na-vylet/udoli-plakanek.jpg", "desc": "Úchvatné romantické údolí, které je obklopené borovým lesem a skalními masivy, bylo v roce 1990 vyhlášeno přírodní rezervací." },
+    { "title": "Skalní obydlí Barušky", "link": "skalni-obydli-barusky", "dist": "4.8 km", "difficulty": "mírná", "img": "https://cejch.cz/obr/tipy-na-vylet/skalni-obydli-barusky.jpg", "desc": "Skalní obydlí se nachází asi 350 metrů od hradu Kost a bylo vytesáno pravděpodobně před rokem 1850. Název získalo po posledních obyvatelkách." },
+    { "title": "Drábské světničky", "link": "drabske-svetnicky", "dist": "8.5 km", "difficulty": "střední", "img": "https://cejch.cz/obr/tipy-na-vylet/drabske-svetnicky.jpg", "desc": "Původně dřevěný hrad plnil funkci opevněného sídla a strážního bodu. Postaven byl ve druhé třetině 13. století na pískovcových skalách." },
+    { "title": "Zřícenina zámku Zásadka", "link": "zricenina-zamku-zasadka", "dist": "12.0 km", "difficulty": "střední", "img": "https://cejch.cz/obr/tipy-na-vylet/zricenina-zamku-zasadka.jpg", "desc": "Pozůstatky renesančního zámečku, který vznikl přestavbou gotického hradu. Stojí nad soutokem Jizery a Mohelky." },
+    { "title": "Příhrazské skály", "link": "detska-naucna-stezka-prihrazske-skaly", "dist": "2.5 km", "difficulty": "střední", "img": "https://cejch.cz/obr/tipy-na-vylet/detska-naucna-stezka-prihrazske-skaly.jpg", "desc": "Naučná stezka vede členitým terénem Příhrazských skal. Nabízí krásné výhledy a herní prvky pro děti." },
+    { "title": "Staré hrady u Příhraz", "link": "stare-hrady-u-prihraz", "dist": "3.0 km", "difficulty": "náročná", "img": "https://cejch.cz/obr/tipy-na-vylet/stare-hrady-u-prihraz.jpg", "desc": "Pozůstatky skalního hradu ze 13. století. Jeho původní název nebyl dochován a dnes je oblíbeným turistickým cílem." },
+    { "title": "Skalní hrad Klamorna", "link": "skalni-hrad-klamorna", "dist": "8.2 km", "difficulty": "náročná", "img": "https://cejch.cz/obr/tipy-na-vylet/skalni-hrad-klamorna.jpg", "desc": "Skalní hrad Klamorna tvořil spolu s okolními hrady obrannou soustavu v Příhrazských skalách již ve 13. století." },
+    { "title": "Zřícenina hradu Hynšta", "link": "zricenina-hradu-hynsta", "dist": "7.5 km", "difficulty": "náročná", "img": "https://cejch.cz/obr/tipy-na-vylet/zricenina-hradu-hynsta.jpg", "desc": "Pozůstatky hradu ze 13. století vytesaného do jediného skalního bloku, který sloužil i jako modlitebna Českých bratří." },
+    { "title": "Zřícenina hradu Valečov", "link": "zricenina-hradu-valecov", "dist": "10.0 km", "difficulty": "střední", "img": "https://cejch.cz/obr/tipy-na-vylet/zricenina-hradu-valecov.jpg", "desc": "Valečov je zřícenina středověkého skalního hradu z počátku 14. století, dominanta západní části Českého ráje." },
+    { "title": "Státní hrad Trosky", "link": "statni-hrad-trosky", "dist": "15.0 km", "difficulty": "střední", "img": "https://cejch.cz/obr/tipy-na-vylet/statni-hrad-trosky.jpg", "desc": "Bizarní zřícenina gotického hradu, symbol Českého ráje. Byl vybudován na dvou strmých čedičových sopouších." },
+    { "title": "Zámek Hrubá skála", "link": "zamek-hruba-skala", "dist": "14.0 km", "difficulty": "mírná", "img": "https://cejch.cz/obr/tipy-na-vylet/zamek-hruba-skala.jpg", "desc": "Romantický zámek postavený na skupině skalních věží patří mezi nejnavštěvovanější dominanty celého regionu." },
+    { "title": "Hrad Valdštejn", "link": "hrad-valdstejn", "dist": "16.0 km", "difficulty": "mírná", "img": "https://cejch.cz/obr/tipy-na-vylet/hrad-valdstejn.jpg", "desc": "Nejstarší hrad Českého ráje založený kolem roku 1260 rodovými páni z Valdštejna, předky slavného Albrechta." },
+    { "title": "Zámek Svijany", "link": "zamek-svijany", "dist": "9.0 km", "difficulty": "mírná", "img": "https://cejch.cz/obr/tipy-na-vylet/zamek-svijany.jpg", "desc": "Původně renesanční tvrz přestavěná na zámek. Dnes nabízí expozice o historii kraje a místním pivovarnictví." },
+    { "title": "Zámek Humprecht", "link": "zamek-humprecht", "dist": "11.0 km", "difficulty": "mírná", "img": "https://cejch.cz/obr/tipy-na-vylet/zamek-humprecht.jpg", "desc": "Barokní lovecký zámek s unikátní akustickou věží, postavený pro rodinu Černínů jako letní sídlo." },
+    { "title": "Pekařova brána", "link": "pekarova-brana", "dist": "5.0 km", "difficulty": "mírná", "img": "https://cejch.cz/obr/tipy-na-vylet/pekarova-brana.jpg", "desc": "Skalní brána ve tvaru gotického oblouku vytesaná v roce 1914 při stavbě silnice, pojmenovaná po historiku Pekařovi." }
   ],
   "ceny": [
-    { "typ": "Retro Chatka", "adult": "450 Kč", "child": "320 Kč", "note": "Lůžkoviny v ceně" },
-    { "typ": "Apartmán Standard", "adult": "850 Kč", "child": "550 Kč", "note": "Vlastní koupelna" },
-    { "typ": "Apartmán Deluxe", "adult": "1 150 Kč", "child": "750 Kč", "note": "Snídaně v ceně" },
-    { "typ": "Ubytovna (skupiny)", "adult": "350 Kč", "child": "290 Kč", "note": "Nad 15 osob" }
-  ]
+    { "typ": "Chatka JUNIOR", "max_persons": 4, "prices": { "1": "400 Kč", "2": "600 Kč", "3": "800 Kč", "4": "1.000 Kč" } },
+    { "typ": "Chatka JUNIOR M", "max_persons": 5, "prices": { "1": "1.200 Kč", "2": "1.400 Kč", "3": "1.600 Kč", "4": "1.800 Kč", "5": "2.000 Kč" } },
+    { "typ": "APARTMÁN", "max_persons": 5, "prices": { "1": "1.200 Kč", "2": "1.400 Kč", "3": "1.600 Kč", "4": "1.800 Kč", "5": "2.000 Kč" } },
+    { "typ": "STUDIO malé", "max_persons": 4, "prices": { "1": "1.000 Kč", "2": "1.200 Kč", "3": "1.400 Kč", "4": "1.600 Kč" } },
+    { "typ": "STUDIO velké", "max_persons": 6, "prices": { "1": "1.000 Kč", "2": "1.200 Kč", "3": "1.400 Kč", "4": "1.600 Kč", "5": "1.800 Kč", "6": "2.000 Kč" } },
+    { "typ": "Chata RODINA", "max_persons": 8, "prices": { "1": "1.200 Kč", "2": "1.400 Kč", "3": "1.600 Kč", "4": "1.800 Kč", "5": "2.000 Kč", "6": "2.200 Kč", "7": "2.400 Kč", "8": "2.600 Kč" } },
+    { "typ": "Chata JAVORINA", "max_persons": 9, "prices": { "1": "600 Kč", "2": "800 Kč", "3": "1.000 Kč", "4": "1.200 Kč", "5": "1.400 Kč", "6": "1.600 Kč", "7": "1.800 Kč", "8": "2.000 Kč", "9": "2.200 Kč" } },
+    { "typ": "Chata PREMIUM", "max_persons": 12, "prices": { "1": "1.800 Kč", "2": "2.000 Kč", "3": "2.200 Kč", "4": "2.400 Kč", "5": "2.600 Kč", "6": "2.800 Kč", "7": "3.000 Kč", "8": "3.200 Kč", "9": "3.400 Kč", "10": "3.600 Kč", "11": "3.800 Kč", "12": "4.000 Kč" } }
+  ],
+  "ceny_poznamka": "V nepřízni počasí je možné k ubytování za cenu 500 Kč/ks/noc zapůjčit přímotop."
 }

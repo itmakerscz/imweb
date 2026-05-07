@@ -1,0 +1,58 @@
+<section id="vylety" style="background: white;">
+    <h2 class="section-title">Tipy na výlety</h2>
+    <div class="filter-buttons">
+        <button :class="{ active: selectedDifficulty === 'všechny' }" @click="selectedDifficulty = 'všechny'">Všechny</button>
+        <button :class="{ active: selectedDifficulty === 'mírná' }" @click="selectedDifficulty = 'mírná'">Mírná</button>
+        <button :class="{ active: selectedDifficulty === 'střední' }" @click="selectedDifficulty = 'střední'">Střední</button>
+        <button :class="{ active: selectedDifficulty === 'náročná' }" @click="selectedDifficulty = 'náročná'">Náročná</button>
+    </div>
+    <div class="grid-3">
+        <div class="card" v-for="trip in displayTrips" :key="trip.title">
+            <img :src="trip.img" :alt="trip.title">
+            <div class="card-content">
+                <h3>{{ trip.title }}</h3>
+                <p style="color: var(--secondary); font-weight: bold; margin-bottom: 0.5rem; font-size: 0.9rem;">
+                    <span class="material-icons-outlined" style="font-size: 1rem; vertical-align: middle;">directions_walk</span> {{ trip.dist }} od areálu
+                    <span :class="['diff-badge', trip.difficulty === 'mírná' ? 'diff-mirna' : trip.difficulty === 'střední' ? 'diff-stredni' : 'diff-narocna']">
+                        {{ trip.difficulty }}
+                    </span>
+                </p>
+                <p style="margin-bottom: 1.2rem; font-size: 0.9rem;">{{ trip.desc }}</p>
+                <div style="display: flex; flex-direction: column; gap: 8px; margin-top: auto; position: relative;">
+                    <a :href="'https://cejch.cz/' + trip.link" target="_blank" class="btn-res" style="text-align: center; font-size: 0.8rem;">Více informací</a>
+                    <div style="display: flex; gap: 4px;">
+                        <a :href="'https://mapy.cz/dir?sSource=firm&sId=12741218&t=' + encodeURIComponent(trip.title) + '&mode=turist'" target="_blank" class="outline" title="Pěší trasa" style="flex-grow: 1; text-align: center; font-size: 0.75rem; color: var(--primary); border-color: var(--primary); padding: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 4px;">
+                            <span class="material-icons-outlined" style="font-size: 1rem;">directions_walk</span> Pěšky
+                        </a>
+                        <a :href="'https://mapy.cz/dir?sSource=firm&sId=12741218&t=' + encodeURIComponent(trip.title) + '&mode=bike'" target="_blank" class="outline" title="Cyklo trasa" style="flex-grow: 1; text-align: center; font-size: 0.75rem; color: var(--secondary); border-color: var(--secondary); padding: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 4px;">
+                            <span class="material-icons-outlined" style="font-size: 1rem;">directions_bike</span> Kolo
+                        </a>
+                        <button @click="trip.showQR = !trip.showQR" class="outline" style="padding: 0.5rem; color: var(--primary); border-color: var(--primary); display: flex; align-items: center; justify-content: center;">
+                            <span class="material-icons-outlined" style="font-size: 1.2rem;">qr_code_2</span>
+                        </button>
+                    </div>
+                    <!-- QR Code Popover -->
+                    <div v-if="trip.showQR" style="position: absolute; bottom: 100%; left: 0; right: 0; background: white; padding: 15px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); z-index: 100; text-align: center; margin-bottom: 10px; border: 1px solid #eee;">
+                        <div style="display: flex; gap: 10px; justify-content: center; align-items: flex-end;">
+                            <div>
+                                <img :src="'https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=' + encodeURIComponent('https://mapy.cz/dir?sSource=firm&sId=12741218&t=' + trip.title + '&mode=turist')" alt="QR Pěšky" style="width: 100px; height: 100px;">
+                                <p style="font-size: 0.6rem; margin-top: 5px; color: #666;">Trasa Pěšky</p>
+                            </div>
+                            <div>
+                                <img :src="'https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=' + encodeURIComponent('https://mapy.cz/dir?sSource=firm&sId=12741218&t=' + trip.title + '&mode=bike')" alt="QR Kolo" style="width: 100px; height: 100px;">
+                                <p style="font-size: 0.6rem; margin-top: 5px; color: var(--secondary); font-weight: bold;">Trasa Kolo</p>
+                            </div>
+                        </div>
+                        <div @click="trip.showQR = false" style="position: absolute; top: 5px; right: 8px; cursor: pointer; color: #ccc;">×</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div v-if="filteredTrips.length > 3" style="text-align: center; margin-top: 3rem;">
+        <button class="outline" style="color: var(--primary); border-color: var(--primary);" @click="showAllTrips = !showAllTrips">
+            {{ showAllTrips ? 'Zobrazit méně' : 'Zobrazit všechny' }}
+        </button>
+    </div>
+</section>

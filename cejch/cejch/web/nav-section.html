@@ -1,0 +1,13 @@
+<nav>
+    <div class="logo" @click="scrollTo('app')">
+        <span class="material-icons-outlined">terrain</span> CEJCH
+    </div>
+    <div class="mobile-toggle" @click="isMenuOpen = !isMenuOpen">
+        <span class="material-icons-outlined">{{ isMenuOpen ? 'close' : 'menu' }}</span>
+    </div>
+    <ul class="nav-links" :class="{ active: isMenuOpen }">
+        <li><a href="#ubytovani" @click="isMenuOpen = false">Ubytování</a></li>
+        <li><a href="#vylety" @click="isMenuOpen = false">Výlety</a></li>
+        <li><a href="#rezervace" class="btn-res" @click="isMenuOpen = false">Rezervovat</a></li>
+    </ul>
+</nav>

@@ -1,0 +1,23 @@
+<section id="restaurace" style="background: white;">
+    <h2 class="section-title">Poctivá kuchyně</h2>
+    <p class="section-subtitle">{{ data.restaurace_info.provoz }}<br>{{ data.restaurace_info.poznamka }}</p>
+    <div class="menu-grid">
+        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80" style="width:100%; border-radius: 25px; box-shadow: 15px 15px 0 var(--bg-light);" alt="Restaurace">
+        <div>
+            <h3 style="margin-bottom: 1.5rem; color: var(--primary);">Aktuální jídelní lístek</h3>
+            <div class="menu-item-detailed" v-for="item in (showAllMenu ? data.menu : data.menu.slice(0, 5))" :key="item.name">
+                <img :src="item.img" class="menu-thumb" v-if="item.img" alt="">
+                <div class="menu-info">
+                    <div class="menu-item">
+                        <span style="font-weight: 600;">{{ item.name }}</span>
+                        <span class="menu-price">{{ item.price }}</span>
+                    </div>
+                    <p class="menu-desc" v-if="item.desc">{{ item.desc }}</p>
+                </div>
+            </div>
+            <button class="outline" v-if="data.menu.length > 5" @click="showAllMenu = !showAllMenu">
+                {{ showAllMenu ? 'Skrýt' : 'Celý seznam' }}
+            </button>
+        </div>
+    </div>
+</section>
