@@ -1,0 +1,30 @@
+{
+  "ubytovani": [
+    { "title": "Retro Chatky", "desc": "Čtyřlůžkové dřevěné chatky v těsné blízkosti lesa. Ideální pro milovníky přírody.", "img": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=500&q=80", "price": "od 450 Kč" },
+    { "title": "Apartmány v hlavní budově", "desc": "Nově zrekonstruované pokoje s vlastním sociálním zařízením a výhledem do údolí.", "img": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=500&q=80", "price": "od 850 Kč" },
+    { "title": "Skupinová ubytovna", "desc": "Cenově dostupné ubytování se společným zázemím. Perfektní pro školy a tábory.", "img": "https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=500&q=80", "price": "od 350 Kč" }
+  ],
+  "menu": [
+    { "name": "Cejch Burger (hovězí, cheddar, slanina)", "price": "245 Kč" },
+    { "name": "Konfitované kachní stehno, zelí, knedlík", "price": "315 Kč" },
+    { "name": "Smažený sýr z lokální farmy, hranolky", "price": "195 Kč" },
+    { "name": "Domácí borůvkové knedlíky (3ks)", "price": "165 Kč" },
+    { "name": "Čepovaný speciál 11° (lokální pivovar)", "price": "52 Kč" }
+  ],
+  "sluzby": [
+    { "title": "Školy v přírodě", "icon": "school", "desc": "Zajišťujeme stravu 5x denně, pitný režim a program s instruktory." },
+    { "title": "Svatby v přírodě", "icon": "favorite_border", "desc": "Obřad na louce u lesa, hostina v rustikálním sále na jednom místě." },
+    { "title": "Firemní akce", "icon": "groups", "desc": "Teambuilding, školení nebo firemní večírek. Máme sál s projektorem." }
+  ],
+  "vylety": [
+    { "title": "Hrad Kost", "dist": "4.5 km", "img": "https://images.unsplash.com/photo-1505832018823-50331d70d237?auto=format&fit=crop&w=500&q=80", "desc": "Jeden z nejzachovalejších gotických hradů v Čechách." },
+    { "title": "Drábské světničky", "dist": "8.0 km", "img": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=500&q=80", "desc": "Bývalá skalní pevnost nabízející dechberoucí výhledy." },
+    { "title": "Rybník Věžák", "dist": "6.5 km", "img": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=500&q=80", "desc": "Ikonický rybník se skalními věžemi přímo z hladiny." }
+  ],
+  "ceny": [
+    { "typ": "Retro Chatka", "adult": "450 Kč", "child": "320 Kč", "note": "Lůžkoviny v ceně" },
+    { "typ": "Apartmán Standard", "adult": "850 Kč", "child": "550 Kč", "note": "Vlastní koupelna" },
+    { "typ": "Apartmán Deluxe", "adult": "1 150 Kč", "child": "750 Kč", "note": "Snídaně v ceně" },
+    { "typ": "Ubytovna (skupiny)", "adult": "350 Kč", "child": "290 Kč", "note": "Nad 15 osob" }
+  ]
+}
