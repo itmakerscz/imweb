@@ -5,27 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cejch | Rekreační areál v srdci Českého ráje</title>
     
+    <!-- Google Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    
+    <!-- Vue.js 3 CDN -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     
     <style>
         :root {
-            --primary: #2d4635;
-            --secondary: #d97706;
-            --bg-light: #f3efe0;
+            --primary: #2d4635; /* Lesní zelená */
+            --secondary: #d97706; /* Terakota / Oranžová */
+            --bg-light: #f3efe0; /* Písková */
             --text-dark: #1a1a1a;
             --white: #ffffff;
             --glass: rgba(255, 255, 255, 0.8);
             --transition: all 0.3s ease;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Montserrat', sans-serif; background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
 
+        /* --- NAVIGATION --- */
         nav {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             background: var(--glass); backdrop-filter: blur(10px);
@@ -35,63 +39,63 @@
         }
         .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 5px; }
         .nav-links { display: flex; gap: 1.5rem; }
-        .nav-links a { font-weight: 600; font-size: 0.9rem; }
         .nav-links a:hover { color: var(--secondary); transition: var(--transition); }
         .btn-res { background: var(--secondary); color: white; padding: 0.6rem 1.2rem; border-radius: 50px; font-weight: bold; }
 
+        /* --- HERO SECTION --- */
         .hero {
-            height: 90vh;
+            height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1920&q=80');
             background-size: cover; background-position: center;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             text-align: center; color: white; padding: 0 20px;
         }
-        .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 1rem; }
-        .hero p { font-size: 1.2rem; max-width: 800px; margin-bottom: 2rem; font-weight: 300; }
+        .hero h1 { font-size: 4rem; margin-bottom: 1rem; }
+        .hero p { font-size: 1.2rem; max-width: 700px; margin-bottom: 2rem; }
 
+        /* --- SECTIONS COMMON --- */
         section { padding: 5rem 10%; }
-        .section-title { text-align: center; font-size: 2.8rem; margin-bottom: 1rem; color: var(--primary); }
-        .section-subtitle { text-align: center; margin-bottom: 3rem; opacity: 0.7; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: var(--primary); }
 
+        /* --- GRID LAYOUTS --- */
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
         .card { 
             background: var(--white); border-radius: 15px; overflow: hidden; 
             box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: var(--transition);
-            display: flex; flex-direction: column;
         }
         .card:hover { transform: translateY(-10px); }
-        .card img { width: 100%; height: 220px; object-fit: cover; }
-        .card-content { padding: 1.5rem; flex-grow: 1; }
-        .card-tag { color: var(--secondary); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
+        .card img { width: 100%; height: 200px; object-fit: cover; }
+        .card-content { padding: 1.5rem; }
 
-        .menu-item { display: flex; justify-content: space-between; border-bottom: 1px dashed #ccc; margin-bottom: 1rem; padding-bottom: 5px; }
+        /* --- RESTAURANT & MENU --- */
+        .menu-item { display: flex; justify-content: space-between; border-bottom: 1px dashed #ccc; margin-bottom: 1rem; }
 
+        /* --- CONTACT & FORM --- */
         .contact-container { display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; }
-        .info-box { background: var(--primary); color: white; padding: 2.5rem; border-radius: 20px; }
-        .info-box h3 { margin-bottom: 1.5rem; color: var(--bg-light); }
-        .info-row { display: flex; align-items: center; gap: 15px; margin-bottom: 1.2rem; }
+        form { display: flex; flex-direction: column; gap: 1rem; }
+        input, textarea, select { 
+            padding: 1rem; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; 
+        }
+        button { 
+            background: var(--primary); color: white; padding: 1rem; border: none; 
+            border-radius: 8px; cursor: pointer; font-weight: bold; transition: var(--transition);
+        }
+        button:hover { background: var(--secondary); }
 
-        form { display: flex; flex-direction: column; gap: 1rem; background: white; padding: 2.5rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        input, textarea, select { padding: 1rem; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
-        button.main-btn { background: var(--primary); color: white; padding: 1rem; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: var(--transition); }
-        button.main-btn:hover { background: var(--secondary); }
-
-        .ref-strip { background: white; padding: 3rem; text-align: center; border-radius: 100px; margin: 2rem 0; font-size: 0.9rem; opacity: 0.6; }
-
-        footer { background: var(--primary); color: white; padding: 4rem 10% 2rem; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; margin-bottom: 3rem; }
-        .footer-logo { font-size: 1.8rem; font-family: 'Playfair Display', serif; margin-bottom: 1rem; display: block; }
+        footer { background: var(--primary); color: white; text-align: center; padding: 3rem; margin-top: 3rem; }
 
         @media (max-width: 768px) {
-            section { padding: 3rem 5%; }
+            .hero h1 { font-size: 2.5rem; }
+            nav { padding: 1rem; }
+            .nav-links { display: none; } /* V reálu by zde bylo mobilní menu */
             .contact-container { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
 
 <div id="app">
+    <!-- Navigation -->
     <nav>
         <div class="logo">
             <span class="material-icons-outlined">terrain</span> CEJCH
@@ -99,171 +103,97 @@
         <ul class="nav-links">
             <li><a href="#ubytovani">Ubytování</a></li>
             <li><a href="#restaurace">Restaurace</a></li>
-            <li><a href="#skoly">Školy & Akce</a></li>
+            <li><a href="#sluzby">Služby</a></li>
+            <li><a href="#akce">Akce</a></li>
             <li><a href="#vylety">Výlety</a></li>
-            <li><a href="#kontakt">Kontakt</a></li>
+            <li><a href="#cenik">Ceník</a></li>
         </ul>
-        <a href="#kontakt" class="btn-res">Poptávka</a>
+        <a href="#rezervace" class="btn-res shadow">Rezervovat</a>
     </nav>
 
+    <!-- Hero Section -->
     <header class="hero">
-        <h1>Váš kousek ráje v Srbsku</h1>
-        <p>Propojujeme tradici rekreačního areálu s moderní gastronomií. 120 lůžek, poctivá kuchyně a nekonečné lesy Českého ráje přímo za dveřmi.</p>
-        <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
-            <button @click="scrollTo('ubytovani')" class="main-btn" style="background: white; color: var(--primary); padding: 1rem 2rem;">Nabídka ubytování</button>
-            <button @click="scrollTo('kontakt')" class="main-btn" style="background: var(--secondary); padding: 1rem 2rem;">Rezervovat termín</button>
+        <h1>Váš kousek ráje</h1>
+        <p>Zažijte autentickou atmosféru Českého ráje v našem rekreačním areálu. Ideální pro rodiny, školy i firemní akce.</p>
+        <div style="display: flex; gap: 1rem;">
+            <button @click="scrollTo('sluzby')" style="background: white; color: var(--primary);">Zjistit více</button>
+            <button @click="scrollTo('rezervace')" style="background: var(--secondary);">Chci přijet</button>
         </div>
     </header>
 
-    <!-- Ubytování Section -->
+    <!-- Ubytování -->
     <section id="ubytovani">
-        <h2 class="section-title">Kapacita a zázemí</h2>
-        <p class="section-subtitle">Disponujeme celkovou kapacitou 120 lůžek rozdělených pro různé typy zážitků.</p>
+        <h2 class="section-title">Kde budete spát?</h2>
         <div class="grid-3">
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=500&q=80" alt="Apartmány">
+            <div class="card" v-for="room in ubytovani" :key="room.title">
+                <img :src="room.img" :alt="room.title">
                 <div class="card-content">
-                    <span class="card-tag">Komfort</span>
-                    <h3>Hlavní budova</h3>
-                    <p>Zrekonstruované pokoje s vlastním sociálním zařízením. Ideální pro rodinnou rekreaci a firemní kurzy.</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=500&q=80" alt="Chatky">
-                <div class="card-content">
-                    <span class="card-tag">Příroda</span>
-                    <h3>Letní chatky</h3>
-                    <p>Tradiční dřevěné chatky pro ty, kteří hledají autentický táborový zážitek a chtějí být nadosah přírodě.</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=500&q=80" alt="Společné prostory">
-                <div class="card-content">
-                    <span class="card-tag">Zázemí</span>
-                    <h3>Sály a učebny</h3>
-                    <p>K dispozici jsou společenské místnosti, školící sály a venkovní zastřešené terasy pro program za každého počasí.</p>
+                    <h3>{{ room.title }}</h3>
+                    <p>{{ room.desc }}</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Restaurace Section -->
-    <section id="restaurace" style="background: #fff; border-radius: 60px 60px 0 0;">
-        <h2 class="section-title">Rodinná gastronomie</h2>
-        <div class="contact-container" style="align-items: center;">
+    <!-- Restaurace -->
+    <section id="restaurace" style="background: #fff;">
+        <h2 class="section-title">Naše kuchyně</h2>
+        <div class="contact-container">
             <div>
-                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80" style="width:100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);" alt="Restaurace Cejch">
+                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" style="width:100%; border-radius: 15px;" alt="Restaurace">
+                <p style="margin-top: 1rem;">Vaříme z lokálních surovin. Naše burgery a žebra jsou v okolí vyhlášené!</p>
             </div>
             <div>
-                <h3>Restaurace v areálu</h3>
-                <p style="margin: 1.5rem 0;">Naše kuchyně staví na poctivosti a lokálních dodavatelích. Jsme vyhlášení víkendovými specialitami a domácí atmosférou.</p>
-                
+                <h3>Víkendové speciality</h3>
                 <div class="menu-item" v-for="item in menu" :key="item.name">
                     <span>{{ item.name }}</span>
                     <strong>{{ item.price }}</strong>
                 </div>
-
-                <div style="background: var(--bg-light); padding: 1.5rem; border-radius: 12px; margin-top: 2rem;">
-                    <p><strong><span class="material-icons-outlined" style="vertical-align: middle; font-size: 1.2rem;">schedule</span> Aktuální otevírací doba:</strong></p>
-                    <p>Pátek: 11:30 – 20:00 | Sobota: 11:30 – 20:00 | Neděle: 11:30 – 18:00</p>
-                </div>
+                <p><small>* Nabídka se mění podle sezóny.</small></p>
             </div>
         </div>
     </section>
 
-    <!-- Školy v přírodě -->
-    <section id="skoly" style="background: var(--primary); color: white;">
-        <h2 class="section-title" style="color: white;">Školy v přírodě a Tábory</h2>
-        <p class="section-subtitle" style="color: rgba(255,255,255,0.8);">Již přes 20 let jsme bezpečným přístavem pro dětské kolektivy.</p>
+    <!-- Služby -->
+    <section id="sluzby">
+        <h2 class="section-title">Co u nás zažijete</h2>
         <div class="grid-3">
-            <div style="background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 15px;">
-                <span class="material-icons-outlined" style="font-size: 3rem; color: var(--secondary);">security</span>
-                <h3>Bezpečný areál</h3>
-                <p>Oplocený areál uprostřed lesa, mimo hlavní silnice. Děti mají prostor pro hry bez rizika.</p>
+            <div class="card" v-for="service in sluzby" :key="service.title">
+                <div class="card-content" style="text-align: center;">
+                    <span class="material-icons-outlined" style="font-size: 3rem; color: var(--secondary);">{{ service.icon }}</span>
+                    <h3>{{ service.title }}</h3>
+                    <p>{{ service.desc }}</p>
+                </div>
             </div>
-            <div style="background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 15px;">
-                <span class="material-icons-outlined" style="font-size: 3rem; color: var(--secondary);">restaurant_menu</span>
-                <h3>Strava 5x denně</h3>
-                <p>Jídelníček konzultovaný s pedagogy, pitný režim po celý den a respekt k dietám.</p>
-            </div>
-            <div style="background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 15px;">
-                <span class="material-icons-outlined" style="font-size: 3rem; color: var(--secondary);">sports_soccer</span>
-                <h3>Sportoviště</h3>
-                <p>Vlastní hřiště na fotbal, volejbal a dostatek prostoru pro táborové ohně.</p>
-            </div>
-        </div>
-        
-        <div class="ref-strip">
-            <strong>Důvěřují nám:</strong> Škoda Auto a.s. • ZŠ Praha 7 • Gymnázium Mladá Boleslav • DDM Symfonie Poděbrady
         </div>
     </section>
 
-    <!-- Kontakt Section -->
-    <section id="kontakt">
-        <h2 class="section-title">Naplánujte si návštěvu</h2>
-        <div class="contact-container">
-            <div class="info-box">
-                <h3>Kontakt</h3>
-                <div class="info-row">
-                    <span class="material-icons-outlined">location_on</span>
-                    <span>Srbsko 35, 294 02 Kněžmost</span>
-                </div>
-                <div class="info-row">
-                    <span class="material-icons-outlined">phone</span>
-                    <span>+420 777 123 456</span>
-                </div>
-                <div class="info-row">
-                    <span class="material-icons-outlined">email</span>
-                    <span>info@cejch.cz</span>
-                </div>
-                <hr style="margin: 2rem 0; opacity: 0.2;">
-                <h3>Naše další provozovny</h3>
-                <p><small>Patříme do skupiny provozující také:</small></p>
-                <p style="margin-top: 0.5rem;">• Restaurace Drhleny<br>• Kiosek Žehrov</p>
+    <!-- Rezervace -->
+    <section id="rezervace" style="background: var(--bg-light);">
+        <h2 class="section-title">Rezervujte si termín</h2>
+        <div class="contact-container shadow" style="background: white; padding: 2rem; border-radius: 20px;">
+            <div>
+                <h3>Kontaktujte nás</h3>
+                <p><span class="material-icons-outlined">location_on</span> Srbsko 35, Kněžmost</p>
+                <p><span class="material-icons-outlined">phone</span> +420 123 456 789</p>
+                <p><span class="material-icons-outlined">email</span> info@cejch.cz</p>
             </div>
             <form @submit.prevent="submitForm">
-                <h3 style="margin-bottom: 1rem;">Nezávazná poptávka</h3>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                    <input type="text" v-model="form.name" placeholder="Jméno a příjmení" required>
-                    <input type="email" v-model="form.email" placeholder="E-mail" required>
-                </div>
+                <input type="text" v-model="form.name" placeholder="Vaše jméno" required>
+                <input type="email" v-model="form.email" placeholder="E-mail" required>
                 <select v-model="form.type">
-                    <option value="skola">Škola v přírodě / Adaptační kurz</option>
-                    <option value="rodina">Rodinná rekreace / Individuální</option>
-                    <option value="akce">Firemní akce / Svatba</option>
-                    <option value="tabory">Letní tábor</option>
+                    <option value="rodina">Rodinná rekreace</option>
+                    <option value="skola">Škola v přírodě / Tábor</option>
+                    <option value="akce">Svatba / Firemní akce</option>
                 </select>
-                <textarea v-model="form.msg" rows="5" placeholder="Předběžný termín, počet osob a vaše přání..."></textarea>
-                <button type="submit" class="main-btn">Odeslat poptávku</button>
+                <textarea v-model="form.msg" rows="4" placeholder="Vaše zpráva..."></textarea>
+                <button type="submit">Odeslat poptávku</button>
             </form>
         </div>
     </section>
 
     <footer>
-        <div class="footer-grid">
-            <div>
-                <span class="footer-logo">CEJCH</span>
-                <p>Brána do Českého ráje. Místo, kde se zastavil čas, abyste si mohli odpočinout.</p>
-            </div>
-            <div>
-                <h4>Užitečné odkazy</h4>
-                <ul style="margin-top: 1rem; opacity: 0.8; font-size: 0.9rem;">
-                    <li><a href="#">Provozní řád</a></li>
-                    <li><a href="#">Ceník ubytování 2026</a></li>
-                    <li><a href="#">Tipy na cyklovýlety</a></li>
-                    <li><a href="#">GDPR</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>Najdete nás</h4>
-                <p style="margin-top: 1rem; opacity: 0.8; font-size: 0.9rem;">
-                    Areál se nachází 15 min od Mladé Boleslavi v malebné obci Srbsko, přímo na turistické trase směr hrad Kost.
-                </p>
-            </div>
-        </div>
-        <p style="text-align: center; font-size: 0.8rem; opacity: 0.5; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem;">
-            &copy; 2026 Rekreační areál CEJCH Group. Všechna práva vyhrazena.
-        </p>
+        <p>&copy; 2026 Rekreační areál CEJCH. Vytvořeno s láskou k přírodě.</p>
     </footer>
 </div>
 
@@ -272,26 +202,37 @@
 
     createApp({
         setup() {
-            const form = ref({ name: '', email: '', type: 'skola', msg: '' });
+            const form = ref({ name: '', email: '', type: 'rodina', msg: '' });
+
+            const ubytovani = [
+                { title: 'Retro Chatky', desc: 'Klasické dřevěné chatky pro pravé táborníky.', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=500&q=80' },
+                { title: 'Apartmány', desc: 'Moderní pokoje s vlastním příslušenstvím.', img: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=500&q=80' },
+                { title: 'Skupinové sály', desc: 'Zázemí pro školy a velké výpravy.', img: 'https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=500&q=80' }
+            ];
 
             const menu = [
-                { name: 'Pomalu pečená vepřová krkovička na pivu', price: '245 Kč' },
-                { name: 'Domácí hovězí burger "Cejch" se slaninou', price: '265 Kč' },
-                { name: 'Smažený sýr z místní mlékárny, hranolky', price: '215 Kč' },
-                { name: 'Čučoriedkové knedlíky s tvarohem', price: '165 Kč' }
+                { name: 'Cejch Burger s domácími hranolky', price: '245 Kč' },
+                { name: 'Pomalu pečená vepřová žebra', price: '289 Kč' },
+                { name: 'Domácí borůvkové knedlíky', price: '165 Kč' },
+                { name: 'Pivo z lokálního pivovaru 0.5l', price: '55 Kč' }
+            ];
+
+            const sluzby = [
+                { title: 'Školy v přírodě', icon: 'school', desc: 'Kompletní servis pro pedagogy a děti.' },
+                { title: 'Pohádkové svatby', icon: 'favorite_border', desc: 'Ano v náručí přírody.' },
+                { title: 'Teambuilding', icon: 'groups', desc: 'Zpevněte svůj tým u ohně i sportem.' }
             ];
 
             const scrollTo = (id) => {
-                const el = document.getElementById(id);
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
             };
 
             const submitForm = () => {
-                alert(`Děkujeme za váš zájem, ${form.value.name}! Ozveme se vám do 24 hodin s nabídkou termínu.`);
-                form.value = { name: '', email: '', type: 'skola', msg: '' };
+                alert(`Děkujeme, ${form.value.name}! Vaše poptávka byla odeslána.`);
+                form.value = { name: '', email: '', type: 'rodina', msg: '' };
             };
 
-            return { menu, form, scrollTo, submitForm };
+            return { ubytovani, menu, sluzby, form, scrollTo, submitForm };
         }
     }).mount('#app');
 </script>
