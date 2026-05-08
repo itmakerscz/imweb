@@ -1,13 +1,15 @@
-<nav>
-    <div class="logo" @click="scrollTo('app')">
+<nav :class="{ 'nav-hidden': isNavHidden }">
+    <a href="#" class="logo" @click.prevent="scrollTo('app')">
         <span class="material-icons-outlined">terrain</span> CEJCH
-    </div>
-    <div class="mobile-toggle" @click="isMenuOpen = !isMenuOpen">
+    </a>
+    <button class="mobile-toggle" @click="isMenuOpen = !isMenuOpen" :aria-label="isMenuOpen ? 'Zavřít menu' : 'Otevřít menu'">
         <span class="material-icons-outlined">{{ isMenuOpen ? 'close' : 'menu' }}</span>
-    </div>
+    </button>
     <ul class="nav-links" :class="{ active: isMenuOpen }">
-        <li><a href="#ubytovani" @click="isMenuOpen = false">Ubytování</a></li>
-        <li><a href="#vylety" @click="isMenuOpen = false">Výlety</a></li>
-        <li><a href="#rezervace" class="btn-res" @click="isMenuOpen = false">Rezervovat</a></li>
+        <li><a href="#ubytovani" @click="isMenuOpen = false" :class="{ active: activeSection === 'ubytovani' || activeSection === 'cenik' }">Ubytování</a></li>
+        <li><a href="#akce" @click="isMenuOpen = false" :class="{ active: activeSection === 'akce' }">Akce</a></li>
+        <li><a href="#restaurace" @click="isMenuOpen = false" :class="{ active: activeSection === 'restaurace' }">Restaurace</a></li>
+        <li><a href="#vylety" @click="isMenuOpen = false" :class="{ active: activeSection === 'vylety' }">Výlety</a></li>
+        <li><a href="#rezervace" class="btn-res" @click="isMenuOpen = false" :class="{ active: activeSection === 'rezervace' }">Rezervovat</a></li>
     </ul>
 </nav>

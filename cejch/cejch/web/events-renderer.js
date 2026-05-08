@@ -1,10 +1,10 @@
 async function renderEvents() {
     const grid = document.getElementById('events-grid');
     try {
-        const response = await fetch('data.json');
-        const data = await response.json();
+        const response = await fetch('akce.json');
+        const events = await response.json();
         
-        grid.innerHTML = data.planovane_akce.map(akce => `
+        grid.innerHTML = events.map(akce => `
             <article class="event-card">
                 <img src="${akce.img}" alt="${akce.title}" class="event-image">
                 <div class="event-content">

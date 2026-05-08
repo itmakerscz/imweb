@@ -1,86 +1,120 @@
 <section id="cenik">
-    <h2 class="section-title">Obsazenost ubytování</h2>
-    <p class="section-subtitle">Vyberte si termín v kalendáři a počet osob pro zobrazení dostupných chatek a cen.</p>
+    <header class="section-header">
+        <h2 class="section-title">Obsazenost ubytování</h2>
+        <p class="section-subtitle">Vyberte si termín v kalendáři a počet osob pro zobrazení dostupných chatek a cen.</p>
+    </header>
 
-    <!-- Kalendář jako primární filtr -->
-    <div class="calendar-container" style="margin-bottom: 3rem;">
-        <div class="calendar-header">
-            <div style="display: flex; flex-direction: column; gap: 5px;">
-                <label class="filter-label">Počet osob:</label>
-                <select v-model="selectedPersons" class="custom-select">
-                    <option value="all">Všechny</option>
-                    <option v-for="n in 12" :key="n" :value="n">{{ n }}</option>
-                </select>
-            </div>
-            <div style="display: flex; flex-direction: column; gap: 5px; align-items: center;">
-                <label class="filter-label">Vyberte měsíc pobytu:</label>
-                <div style="display: flex; align-items: center; gap: 15px;">
-                    <button @click="changeMonth(-1)" class="outline" style="padding: 0.5rem; color: var(--primary); border-color: var(--primary);">&lt;</button>
-                    <strong style="min-width: 120px; text-align: center;">{{ monthNames[calendarMonth] }} {{ calendarYear }}</strong>
-                    <button @click="changeMonth(1)" class="outline" style="padding: 0.5rem; color: var(--primary); border-color: var(--primary);">&gt;</button>
+    <div class="booking-layout">
+        <!-- Kalendář jako primární filtr -->
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <div class="filter-group">
+                    <label class="filter-label">Počet osob:</label>
+                    <select v-model="selectedPersons" class="custom-select">
+                        <option value="all">Všechny</option>
+                        <option v-for="n in 12" :key="n" :value="n">{{ n }}</option>
+                    </select>
                 </div>
-            </div>
-        </div>
-
-        <div class="calendar-grid">
-            <div class="calendar-weekday" v-for="day in ['Po', 'Út', 'St', 'Čt', 'Pá', 'So', 'Ne']" :key="day">{{ day }}</div>
-            <div v-for="(day, index) in calendarDays" :key="index" 
-                 class="calendar-day" 
-                 :class="{ 'other-month': !day.currentMonth, occupied: day.date && isDateOccupied(day.fullDate), 'partially-occupied': day.date && !isDateOccupied(day.fullDate) && isDatePartiallyOccupied(day.fullDate), today: isToday(day.fullDate), selected: isDateSelected(day.fullDate), 'in-range': isDateInRange(day.fullDate), past: day.date && isPastDay(day.fullDate), holiday: isPublicHoliday(day.fullDate) }"
-                 @click="day.date && !isDateOccupied(day.fullDate) && !isPastDay(day.fullDate) && selectCalendarDay(day.fullDate)" 
-                 :style="{ cursor: day.date && !isDateOccupied(day.fullDate) && !isPastDay(day.fullDate) ? 'pointer' : 'default' }">
-                {{ day.date }}
-            </div>
-        </div>
-
-        <div class="calendar-legend">
-            <div class="legend-item"><div class="legend-box" style="background: var(--bg-light); border: 1px solid #ddd;"></div> Volno</div>
-            <div class="legend-item"><div class="legend-box" style="background: rgba(217, 119, 6, 0.1); border: 1px solid var(--secondary);"></div> Víkend</div>
-            <div class="legend-item"><span style="color: #d32f2f; font-weight: bold; font-size: 1.6rem; line-height: 1; width: 18px; text-align: center;">•</span> Svátek</div>
-            <div class="legend-item"><div class="legend-box" style="background: var(--secondary);"></div> Vybraný termín</div>
-            <div class="legend-item"><div class="legend-box" style="background-image: repeating-linear-gradient(45deg, #eee, #eee 3px, #fff 3px, #fff 6px); border: 1px solid #ddd;"></div> Omezená kapacita</div>
-            <div class="legend-item"><div class="legend-box" style="background: #ffebee; border: 1px solid #ffcdd2;"></div> Obsazeno</div>
-        </div>
-    </div>
-
-    <!-- Seznam dostupných chatek -->
-    <div class="grid-3" v-if="filteredPrices.length > 0">
-        <div class="card price-card" v-for="row in filteredPrices" :key="row.typ">
-            <div class="card-content">
-                <div class="price-header">
-                    <span class="material-icons-outlined">payments</span>
-                    <h3>{{ row.typ }}</h3>
-                </div>
-                <div class="price-details">
-                    <div class="price-row" v-if="selectedPersons !== 'all'">
-                        <span>Cena pro {{ selectedPersons }} {{ selectedPersons == 1 ? 'osobu' : (selectedPersons < 5 ? 'osoby' : 'osob') }}</span>
-                        <strong>{{ row.prices[selectedPersons] }}/noc</strong>
-                    </div>
-                    <div class="price-row" v-else>
-                        <span>Kapacita</span>
-                        <strong>1 - {{ row.max_persons }} osob</strong>
-                    </div>
-                    <div class="price-row" v-if="selectedPersons === 'all'">
-                        <span>Cena od</span>
-                        <strong>{{ row.prices["1"] }}</strong>
-                    </div>
-                    <div class="price-row" v-if="nightsCount > 0" style="border-top: 1px solid var(--secondary); margin-top: 8px; padding-top: 8px;">
-                        <span>Celkem za {{ nightsCount }} {{ nightsCount == 1 ? 'noc' : (nightsCount < 5 ? 'noci' : 'nocí') }}</span>
-                        <strong style="color: var(--primary);">{{ getStayPrice(row) }}</strong>
+                <div class="filter-group">
+                    <label class="filter-label">Měna:</label>
+                    <div class="currency-toggle">
+                        <button @click="currency = 'CZK'" :class="{ active: currency === 'CZK' }">CZK</button>
+                        <button @click="currency = 'EUR'" :class="{ active: currency === 'EUR' }">EUR</button>
                     </div>
                 </div>
-                <p class="price-note" v-if="selectedPersons === 'all'">Ceny se liší dle obsazenosti.</p>
-                
-                <button class="primary" style="margin-top: 1.5rem; width: 100%; padding: 0.8rem; font-size: 0.9rem;" 
-                        @click="selectAccommodation(row.typ)">
-                    Rezervovat {{ row.typ }}
-                </button>
+                <div class="filter-group align-center">
+                    <label class="filter-label">Posunout kalendář:</label>
+                    <div class="calendar-nav">
+                        <button @click="changeMonth(-1)" class="outline btn-nav" title="Předchozí měsíc">&lt;</button>
+                        <button @click="changeMonth(1)" class="outline btn-nav" title="Následující měsíc">&gt;</button>
+                    </div>
+                </div>
+            </div>
+
+            <transition-group :name="calendarTransition" tag="div" class="calendars-wrapper">
+                <div v-for="month in multiMonthView" :key="month.year + '-' + month.month" class="month-view">
+                    <h3 class="month-title">{{ month.name }} {{ month.year }}</h3>
+                    <div class="calendar-grid">
+                        <div class="calendar-weekday" v-for="day in ['Po', 'Út', 'St', 'Čt', 'Pá', 'So', 'Ne']" :key="day">{{ day }}</div>
+                        <div v-for="day in month.days" :key="day.fullDate" 
+                             class="calendar-day" 
+                             :class="{ 'other-month': !day.currentMonth, occupied: day.date && isDateOccupied(day.fullDate), 'partially-occupied': day.date && !isDateOccupied(day.fullDate) && isDatePartiallyOccupied(day.fullDate), today: isToday(day.fullDate), selected: isDateSelected(day.fullDate), 'in-range': isDateInRange(day.fullDate), past: day.date && isPastDay(day.fullDate), holiday: isPublicHoliday(day.fullDate) }"
+                             @click="day.date && !isDateOccupied(day.fullDate) && !isPastDay(day.fullDate) && selectCalendarDay(day.fullDate)">
+                            {{ day.date }}
+                        </div>
+                    </div>
+                </div>
+            </transition-group>
+
+            <div class="calendar-legend">
+                <div class="legend-item"><div class="legend-box legend-box-free"></div> Volno</div>
+                <div class="legend-item"><div class="legend-box legend-box-weekend"></div> Víkend</div>
+                <div class="legend-item"><span class="legend-box-holiday-dot">•</span> Svátek</div>
+                <div class="legend-item"><div class="legend-box legend-box-selected"></div> Vybraný termín</div>
+                <div class="legend-item"><div class="legend-box legend-box-partial"></div> Omezená kapacita</div>
+                <div class="legend-item"><div class="legend-box legend-box-occupied"></div> Obsazeno</div>
             </div>
         </div>
+
+        <!-- Výsledky ubytování -->
+        <aside class="booking-results">
+            <transition name="fade">
+                <div v-if="selectedDateFrom && selectedDateTo" class="results-summary">
+                    <h4 class="text-primary">Váš výběr:</h4>
+                    <p>{{ new Date(selectedDateFrom).toLocaleDateString('cs-CZ') }} – {{ new Date(selectedDateTo).toLocaleDateString('cs-CZ') }} <strong>({{ nightsCount }} nocí)</strong></p>
+                </div>
+            </transition>
+
+            <div v-if="filteredPrices.length > 0">
+                <div class="grid-3">
+                    <article class="card" v-for="row in filteredPrices" :key="row.typ">
+                        <span v-if="row.typ === 'Chatka JUNIOR'" class="card-tag">Nejoblíbenější</span>
+                        <span v-if="row.typ === 'Chata PREMIUM'" class="card-tag">Luxusní volba</span>
+                        <img :src="getRoomImage(row.typ)" :alt="row.typ">
+                        <div class="card-content">
+                            <header class="price-header">
+                                <h3>{{ row.typ }}</h3>
+                            </header>
+                            
+                            <div class="price-amenities">
+                                <div class="amenity" title="Wi-Fi připojení"><span class="material-icons-outlined">wifi</span> Ano</div>
+                                <div class="amenity" title="Vlastní sprcha"><span class="material-icons-outlined">shower</span> Ano</div>
+                                <div class="amenity" title="Kapacita"><span class="material-icons-outlined">groups</span> {{ row.max_persons }}</div>
+                            </div>
+
+                            <div class="price-details">
+                                <div class="price-row" v-if="selectedPersons !== 'all'">
+                                    <span>Pro {{ selectedPersons }} {{ selectedPersons == 1 ? 'osobu' : (selectedPersons < 5 ? 'osoby' : 'osob') }}</span>
+                                    <strong>{{ displayPrice(row.prices[selectedPersons]) }}/noc</strong>
+                                </div>
+                                <div class="price-row" v-else>
+                                    <span>Kapacita objektu</span>
+                                    <strong>{{ row.max_persons }} osob</strong>
+                                </div>
+                                <div class="price-row" v-if="selectedPersons === 'all'">
+                                    <span>Základní cena</span>
+                                    <strong>od {{ displayPrice(row.prices["1"]) }}</strong>
+                                </div>
+                                <div class="price-row price-total" v-if="nightsCount > 0">
+                                    <span>Celkem za pobyt</span>
+                                    <strong class="text-primary">{{ getStayPrice(row) }}</strong>
+                                </div>
+                            </div>
+                            <p class="price-note" v-if="selectedPersons === 'all'">Cena se odvíjí od počtu osob.</p>
+                            
+                            <button class="primary btn-booking" @click="selectAccommodation(row.typ)">
+                                Vybrat {{ row.typ }}
+                            </button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            <div v-else class="empty-state">
+                <span class="material-icons-outlined empty-state-icon">block</span>
+                <p class="empty-state-text">Pro vybraný termín a počet osob nemáme volné kapacity. Zkuste prosím jiný termín.</p>
+            </div>
+        </aside>
     </div>
-    <div v-else style="text-align: center; padding: 3rem; background: var(--white); border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); color: #666;">
-        <span class="material-icons-outlined" style="font-size: 3rem; display: block; margin-bottom: 1rem; opacity: 0.3;">block</span>
-        <p style="font-size: 1.1rem;">V tomto termínu a počtu osob bohužel nemáme žádnou volnou kapacitu.</p>
-    </div>
-    <p class="price-note" style="margin-top: 2rem;">{{ data.ceny_poznamka }}</p>
+
+    <p class="price-note mt-2">{{ data.ceny_poznamka }}</p>
 </section>

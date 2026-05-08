@@ -14,9 +14,9 @@
             </article>
         </div>
 
-        <div v-else style="text-align: center; padding: 3rem; background: var(--white); border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); color: #666;">
-            <span class="material-icons-outlined" style="font-size: 3rem; display: block; margin-bottom: 1rem; opacity: 0.3;">event_busy</span>
-            <p style="font-size: 1.1rem; font-style: italic;">Momentálně neplánujeme žádné akce.</p>
+        <div v-else class="empty-state">
+            <span class="material-icons-outlined empty-state-icon">event_busy</span>
+            <p class="empty-state-text">Momentálně neplánujeme žádné akce.</p>
         </div>
     </div>
 </section>
