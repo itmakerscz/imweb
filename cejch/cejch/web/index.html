@@ -18,8 +18,8 @@
     
     <!-- Global Lightbox -->
     <div v-if="isLightboxOpen" class="lightbox-overlay" @click.self="closeLightbox" @touchstart="handleTouchStart" @touchend="handleTouchEnd">
-        <button class="lightbox-close" @click="closeLightbox" aria-label="Zavřít">&times;</button>
-        <button class="lightbox-nav prev" @click="prevLightboxImage" v-if="lightboxImages.length > 1" aria-label="Předchozí">&lsaquo;</button>
+        <button class="lightbox-close" @click="closeLightbox" :aria-label="t('lightbox.close')">&times;</button>
+        <button class="lightbox-nav prev" @click="prevLightboxImage" v-if="lightboxImages.length > 1" :aria-label="t('lightbox.prev_image')">&lsaquo;</button>
         <div class="lightbox-content">
             <img :src="lightboxImages[activeLightboxIndex]" :alt="lightboxTitle">
             <div class="lightbox-caption">
@@ -27,7 +27,7 @@
                 <span>{{ activeLightboxIndex + 1 }} / {{ lightboxImages.length }}</span>
             </div>
         </div>
-        <button class="lightbox-nav next" @click="nextLightboxImage" v-if="lightboxImages.length > 1" aria-label="Další">&rsaquo;</button>
+        <button class="lightbox-nav next" @click="nextLightboxImage" v-if="lightboxImages.length > 1" :aria-label="t('lightbox.next_image')">&rsaquo;</button>
     </div>
 </div>
 

@@ -1,12 +1,12 @@
 <footer>
-    <div class="logo" style="color: white; justify-content: center; margin-bottom: 2rem;">
-        <span class="material-icons-outlined">terrain</span> CEJCH
+    <div class="logo" style="color: white; justify-content: center; margin-bottom: 2rem;" :aria-label="t('nav.logo_text')">
+        <span class="material-icons-outlined">terrain</span> {{ t('nav.logo_text') }}
     </div>
     <div class="footer-links">
-        <a href="#ubytovani">Ubytování</a>
-        <a href="#restaurace">Restaurace</a>
-        <a href="#vylety">Výlety</a>
-        <a href="#cenik">Ceník</a>
+        <a href="#ubytovani">{{ t('nav.ubytovani') }}</a>
+        <a href="#restaurace">{{ t('nav.restaurace') }}</a>
+        <a href="#vylety">{{ t('nav.vylety') }}</a>
+        <a href="#cenik">{{ t('cenik.title') }}</a>
     </div>
-    <p>&copy; 2026 Rekreační areál CEJCH. Všechna práva vyhrazena.</p>
+    <p>{{ t('footer.copyright') }}</p>
 </footer>

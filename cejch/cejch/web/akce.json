@@ -1,14 +1,12 @@
 [
   {
-    "title": "Letní kino pod hvězdami",
+    "id": "letni_kino",
     "date": "15. 7. 2026",
-    "desc": "Přijďte si užít promítání českých klasik pod širým nebem. Občerstvení a deky zajištěny.",
     "img": "https://cejch.cz/obr/cejch-1.jpg"
   },
   {
-    "title": "Aktuálně u nás",
+    "id": "aktualne_u_nas",
     "date": "Jaro 2026",
-    "desc": "Pá-So: 11:30 až 20:00, Ne: 11:30 až 18:00. Léto už je za rohem! Tematickým víkendům dáváme na nějaký čas vale. Náš šéfkuchař pro vás pravidelně aktualizuje jídelní lístek v záložce RESTAURACE.",
     "img": "https://cejch.cz/obr/cejch-2.jpg"
   }
 ]

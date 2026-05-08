@@ -1,24 +1,24 @@
 <section id="restaurace" class="bg-white">
-    <h2 class="section-title">Poctivá kuchyně</h2>
+    <h2 class="section-title">{{ t('restaurace.title') }}</h2> <!-- Přidáno t() -->
     <p class="section-subtitle">{{ data.restaurace_info.provoz }}<br>{{ data.restaurace_info.poznamka }}</p>
     <div class="menu-grid">
         <div class="menu-image-wrapper">
             <img src="https://cejch.cz/obr/cejch-2.jpg" alt="Restaurace">
         </div>
         <div>
-            <h3 class="menu-title">Aktuální jídelní lístek</h3>
-            <div class="menu-item-detailed" v-for="item in (showAllMenu ? data.menu : data.menu.slice(0, 5))" :key="item.name">
+            <h3 class="menu-title">{{ t('restaurace.menu_title') }}</h3> <!-- Přidáno t() -->
+            <div class="menu-item-detailed" v-for="item in (showAllMenu ? data.menu : data.menu.slice(0, 5))" :key="item.id">
                 <img :src="item.img" class="menu-thumb" v-if="item.img" alt="">
                 <div class="menu-info">
                     <div class="menu-item">
                         <span class="menu-item-name">{{ item.name }}</span>
                         <span class="menu-price">{{ item.price }}</span>
                     </div>
-                    <p class="menu-desc" v-if="item.desc">{{ item.desc }}</p>
+                    <p class="menu-desc">{{ item.desc }}</p>
                 </div>
             </div>
             <button class="outline" v-if="data.menu.length > 5" @click="showAllMenu = !showAllMenu">
-                {{ showAllMenu ? 'Skrýt' : 'Celý seznam' }}
+                {{ showAllMenu ? t('restaurace.hide') : t('restaurace.show_all') }} <!-- Přidáno t() -->
             </button>
         </div>
     </div>

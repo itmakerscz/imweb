@@ -1,0 +1,199 @@
+{
+  "common": {
+    "month_names": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+    "weekdays_short": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+  },
+  "nav": {
+    "logo_text": "CEJCH",
+    "ubytovani": "Accommodation",
+    "sluzby": "Services",
+    "akce": "Events",
+    "restaurace": "Restaurant",
+    "vylety": "Trips",
+    "rezervovat": "Book Now",
+    "menu_open": "Open menu",
+    "menu_close": "Close menu",
+    "explore_area": "Explore Area"
+  },
+  "hero": {
+    "title": "Welcome to the heart of the Bohemian Paradise",
+    "subtitle": "Peace of pine forests, sandstone rocks at your fingertips and a homey atmosphere.",
+    "book_stay": "Book Stay"
+  },
+  "ubytovani": {
+    "title": "Comfortable Accommodation",
+    "subtitle": "Choose the accommodation style that suits you best.",
+    "card_tag_junior": "Most popular",
+    "card_tag_premium": "Luxury choice",
+    "price_from": "from {price}"
+  },
+  "rooms": {
+    "junior": { "title": "JUNIOR Cabin", "desc": "Four-bed wooden cabins right next to the forest. Ideal for nature lovers." },
+    "junior_m": { "title": "JUNIOR M Cabin", "desc": "Five-bed cabins with modern interior and a small terrace. Suitable for families with children." },
+    "apartman": { "title": "APARTMENT", "desc": "Newly renovated rooms with private bathroom and valley view." },
+    "studio_male": { "title": "STUDIO small", "desc": "Compact studio for two with a kitchenette and modern equipment." },
+    "studio_velke": { "title": "STUDIO large", "desc": "Spacious studio for four people with a separate bedroom and fully equipped kitchen." },
+    "rodina": { "title": "FAMILY Cabin", "desc": "Large cabin with multiple bedrooms, ideal for larger families or groups of friends." },
+    "javorina": { "title": "JAVORINA Cabin", "desc": "Detached cabin with a large garden and privacy, ideal for a peaceful holiday." },
+    "premium": { "title": "PREMIUM Cabin", "desc": "Luxury cabin with premium equipment, hot tub and panoramic view." },
+    "ubytovna": { "title": "Hostel", "desc": "Simple accommodation in rooms with shared bathroom facilities in the main building." }
+  },
+  "cenik": {
+    "title": "Accommodation Availability",
+    "subtitle": "Select a date in the calendar and the number of persons to see available cabins and prices.",
+    "persons_label": "Number of persons:",
+    "all_persons": "All",
+    "currency_label": "Currency:",
+    "calendar_nav_label": "Calendar:",
+    "prev_month": "Previous month",
+    "next_month": "Next month",
+    "weekdays": ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+    "legend_free": "Free",
+    "legend_weekend": "Weekend",
+    "legend_holiday": "Holiday",
+    "legend_selected": "Selected date",
+    "legend_partial": "Limited capacity",
+    "legend_occupied": "Occupied",
+    "your_selection": "Your choice:",
+    "nights_count": "{count} {night_word}",
+    "night_singular": "night",
+    "night_plural_2_4": "nights",
+    "night_plural_5_plus": "nights",
+    "for_persons_count": "For {count} {person_word}",
+    "person_singular": "person",
+    "person_plural_2_4": "persons",
+    "person_plural_5_plus": "persons",
+    "capacity_object": "Object capacity",
+    "basic_price": "Basic price",
+    "from": "from",
+    "total_for_stay": "Total for stay",
+    "price_note_persons": "The price depends on the number of persons.",
+    "select_room": "Select {room_type}",
+    "cancel_selection": "Cancel selection",
+    "no_capacity": "We do not have available capacity for the selected dates and number of persons. Please try another date.",
+    "amenity_wifi": "Yes",
+    "amenity_wifi_title": "Wi-Fi connection",
+    "amenity_shower": "Yes",
+    "amenity_shower_title": "Private shower",
+    "amenity_capacity": "Capacity",
+    "amenity_capacity_title": "Capacity",
+    "general_price_note": "In case of bad weather, it is possible to rent a heater for 500 CZK/pcs/night."
+  },
+  "akce": {
+    "title": "PLANNED EVENTS",
+    "subtitle": "Below you will find a list of all planned events in our recreation area.",
+    "no_events": "We are currently planning no events.",
+    "event_date": "{date}",
+    "items": {
+      "letni_kino": { "title": "Summer Cinema under the Stars", "desc": "Come and enjoy screenings of Czech classics under the open sky. Refreshments and blankets provided." },
+      "aktualne_u_nas": { "title": "Currently with us", "desc": "Fri-Sat: 11:30 to 20:00, Sun: 11:30 to 18:00. Summer is just around the corner! We're taking a break from themed weekends for a while. Our chef regularly updates the menu in the RESTAURANT section." }
+    }
+  },
+  "restaurace": {
+    "title": "Honest Cuisine",
+    "menu_title": "Current Menu",
+    "show_all": "Show all",
+    "hide": "Hide",
+    "restaurant_info_title": "Restaurant opening hours:",
+    "restaurant_info_text": "Operation: {provoz}",
+    "quote": "You will love our burgers and homemade pancakes.",
+    "spring_hours": "Spring: Fri-Sat: 11:30 to 20:00, Sun: 11:30 to 18:00.",
+    "restaurant_note": "Current offer for the period 1.5. – 3.5. 2026",
+    "items": {
+      "bramborovy_krem": { "name": "Potato cream with homemade cracklings", "desc": "Soup is the basis!" },
+      "zvihodnene_menu": { "name": "Value menu", "desc": "Soup and fried cheese with fries and homemade tartar sauce." },
+      "grilovana_klobasa": { "name": "Homemade grilled sausage with bread", "desc": "Grilled paprika sausage with coarse-grained mustard, bread and fresh salad." },
+      "smazeny_syr": { "name": "Fried cheese with fries and homemade tartar", "desc": "Golden fried cheese with fries and our homemade tartar sauce." },
+      "kureci_steak": { "name": "Chicken steak with grilled vegetables", "desc": "Chicken breast steak with grilled vegetables" },
+      "texas_steak": { "name": "Texas steak with fries", "desc": "Grilled pork steak on a long rib, slightly marbled along the bone, served with golden fries and homemade tartar." },
+      "smazeny_kureci_rizek": { "name": "Fried chicken schnitzel", "desc": "Golden fried chicken breast schnitzel with parsley potatoes and a lemon wedge." },
+      "veprove_sote_kari": { "name": "Pork sauté on curry", "desc": "Pork sauté with vegetables on curry, jasmine rice" },
+      "kanci_gulas": { "name": "Wild boar goulash with bread and onion", "desc": "Wild boar goulash, slowly simmered to full flavor, served with fresh bread." },
+      "vegetariansky_salat": { "name": "Vegetarian salad with Feta cheese", "desc": "Crispy iceberg lettuce with fresh vegetables, honey-mustard dressing and boiled egg." },
+      "veprovy_karbenatek": { "name": "Pork patty with potato", "desc": "Pork patty from bio pig, boiled parsley potato, Coleslaw" }
+    }
+  },
+  "vylety": {
+    "title": "Tips for Trips",
+    "all": "All",
+    "mild": "Easy",
+    "medium": "Medium",
+    "hard": "Hard",
+    "distance_from_area": "{dist} from the area",
+    "more_info": "More information",
+    "walk": "Walk",
+    "bike": "Bike",
+    "show_less": "Show less",
+    "show_all": "Show all",
+    "walk_route": "Walking route",
+    "bike_route": "Cycling route",
+    "qr_walk_alt": "QR code for walking route",
+    "qr_bike_alt": "QR code for cycling route",
+    "items": {
+      "hrad_kost": { "title": "Kost Castle", "desc": "The Gothic castle was built on a sandstone rock elevation, but atypically hidden in a valley in deep forests." },
+      "udoli_plakanek": { "title": "Plakánek Valley", "desc": "A breathtaking romantic valley surrounded by pine forest and rock massifs." },
+      "skalni_obydli_barusky": { "title": "Baruška's Rock Dwelling", "desc": "Rock dwelling carved before 1850, located near Kost Castle." },
+      "drabske_svetnicky": { "title": "Drábské světničky", "desc": "Remains of a 13th-century rock castle on sandstone cliffs." },
+      "zricenina_zamku_zasadka": { "title": "Zásadka Castle Ruins", "desc": "Remains of a Renaissance chateau built above the confluence of rivers." },
+      "prihrazske_skaly": { "title": "Příhrazy Rocks", "desc": "Educational trail through rugged terrain with beautiful views." },
+      "stare_hrady_u_prihraz": { "title": "Old Castles near Příhrazy", "desc": "Remains of a 13th-century rock castle, now a popular destination." },
+      "skalni_hrad_klamorna": { "title": "Klamorna Rock Castle", "desc": "Part of a 13th-century defense system in the Příhrazy Rocks." },
+      "zricenina_hradu_hynsta": { "title": "Hynšta Castle Ruins", "desc": "Remains of a castle carved into a single rock block." },
+      "zricenina_hradu_valecov": { "title": "Valečov Castle Ruins", "desc": "Ruins of a medieval rock castle, a landmark of the western part of the region." },
+      "statni_hrad_trosky": { "title": "Trosky State Castle", "desc": "Bizarre ruins of a Gothic castle, the symbol of Bohemian Paradise." },
+      "zamek_hruba_skala": { "title": "Hrubá Skála Chateau", "desc": "A romantic chateau built on a group of rock towers." },
+      "hrad_valdstejn": { "title": "Valdštejn Castle", "desc": "The oldest castle in Bohemian Paradise, founded around 1260." },
+      "zamek_svijany": { "title": "Svijany Chateau", "desc": "Renaissance fortress rebuilt into a chateau with a local brewery." },
+      "zamek_humprecht": { "title": "Humprecht Chateau", "desc": "Baroque hunting lodge with a unique acoustic tower." },
+      "pekarova_brana": { "title": "Pekař's Gate", "desc": "A rock gate in the shape of a Gothic arch carved in 1914." }
+    }
+  },
+  "sluzby": {
+    "title": "Tailor-made Experiences",
+    "subtitle": "We arrange everything from bike rentals to corporate event and wedding organization.",
+    "items": {
+      "skoly": { "title": "Outdoor Schools", "desc": "We provide food 5x a day, drinking regime and a program with instructors." },
+      "svatby": { "title": "Outdoor Weddings", "desc": "Ceremony on the meadow by the forest, banquet in a rustic hall." },
+      "akce": { "title": "Corporate Events", "desc": "Teambuilding, training or company party with a projector." }
+    }
+  },
+  "rezervace": {
+    "title": "Book your stay",
+    "contact_us": "Contact us",
+    "your_name": "Your name",
+    "your_email": "Your Email",
+    "arrival": "Arrival",
+    "departure": "Departure",
+    "family_recreation": "Family recreation",
+    "school_trip": "School trip / Camp",
+    "wedding_event": "Wedding / Corporate event",
+    "message_placeholder": "Do you have a specific date or request?",
+    "summary_title": "Booking summary",
+    "total_to_pay": "Total amount to pay",
+    "select_accommodation_alert": "Please select accommodation in the calendar above before submitting.",
+    "send_inquiry": "Send inquiry",
+    "new_inquiry_from": "New inquiry from",
+    "term": "Term",
+    "stay_type": "Stay type",
+    "selected_accommodation": "Selected accommodation",
+    "total_price": "Total price",
+    "client_message": "Message from client",
+    "location": "Srbsko 35, 294 02 Kněžmost",
+    "phone": "+420 123 456 789",
+    "email": "reservation@cejch.cz"
+  },
+  "lightbox": {
+    "prev_image": "Previous image",
+    "next_image": "Next image",
+    "close": "Close"
+  },
+  "footer": {
+    "copyright": "© 2026 Recreation Area CEJCH. All rights reserved."
+  },
+  "alerts": {
+    "select_term_first": "Please select the stay term in the calendar first.",
+    "room_occupied": "We are sorry, but {room_type} is already occupied in the selected term.",
+    "inquiry_sent_thanks": "Thank you, inquiry sent.",
+    "select_accommodation_first": "Please select at least one accommodation in the price list."
+  }
+}

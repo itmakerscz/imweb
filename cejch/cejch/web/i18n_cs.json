@@ -1,0 +1,199 @@
+{
+  "common": {
+    "month_names": ["Leden", "Únor", "Březen", "Duben", "Květen", "Červen", "Červenec", "Srpen", "Září", "Říjen", "Listopad", "Prosinec"],
+    "weekdays_short": ["Po", "Út", "St", "Čt", "Pá", "So", "Ne"]
+  },
+  "nav": {
+    "logo_text": "CEJCH",
+    "ubytovani": "Ubytování",
+    "sluzby": "Služby",
+    "akce": "Akce",
+    "restaurace": "Restaurace",
+    "vylety": "Výlety",
+    "rezervovat": "Rezervovat",
+    "menu_open": "Otevřít menu",
+    "menu_close": "Zavřít menu",
+    "explore_area": "Prohlédnout areál"
+  },
+  "hero": {
+    "title": "Vítejte v srdci Českého ráje",
+    "subtitle": "Klid borových lesů, pískovcové skály na dosah a domácí atmosféra.",
+    "book_stay": "Rezervovat pobyt"
+  },
+  "ubytovani": {
+    "title": "Komfortní ubytování",
+    "subtitle": "Vyberte si styl ubytování, který vám nejvíce vyhovuje.",
+    "card_tag_junior": "Nejoblíbenější",
+    "card_tag_premium": "Luxusní volba",
+    "price_from": "od {price}"
+  },
+  "rooms": {
+    "junior": { "title": "Chatka JUNIOR", "desc": "Čtyřlůžkové dřevěné chatky v těsné blízkosti lesa. Ideální pro milovníky přírody." },
+    "junior_m": { "title": "Chatka JUNIOR M", "desc": "Pětilůžkové chatky s moderním interiérem a malou terasou. Vhodné pro rodiny s dětmi." },
+    "apartman": { "title": "APARTMÁN", "desc": "Nově zrekonstruované pokoje s vlastním sociálním zařízením a výhledem do údolí." },
+    "studio_male": { "title": "STUDIO malé", "desc": "Kompaktní studio pro dva s kuchyňským koutem a moderním vybavením." },
+    "studio_velke": { "title": "STUDIO velké", "desc": "Prostorné studio pro čtyři osoby s oddělenou ložnicí a plně vybavenou kuchyní." },
+    "rodina": { "title": "Chata RODINA", "desc": "Velká chata s více ložnicemi, ideální pro větší rodiny nebo skupiny přátel." },
+    "javorina": { "title": "Chata JAVORINA", "desc": "Samostatná chata s velkou zahradou a soukromím, ideální pro klidnou dovolenou." },
+    "premium": { "title": "Chata PREMIUM", "desc": "Luxusní chata s nadstandardním vybavením, vířivkou a panoramatickým výhledem." },
+    "ubytovna": { "title": "Ubytovna", "desc": "Jednoduché ubytování v pokojích se společným sociálním zařízením v hlavní budově." }
+  },
+  "cenik": {
+    "title": "Obsazenost ubytování",
+    "subtitle": "Vyberte si termín v kalendáři a počet osob pro zobrazení dostupných chatek a cen.",
+    "persons_label": "Počet osob:",
+    "all_persons": "Všechny",
+    "currency_label": "Měna:",
+    "calendar_nav_label": "Kalendář:",
+    "prev_month": "Předchozí měsíc",
+    "next_month": "Následující měsíc",
+    "weekdays": ["Po", "Út", "St", "Čt", "Pá", "So", "Ne"],
+    "legend_free": "Volno",
+    "legend_weekend": "Víkend",
+    "legend_holiday": "Svátek",
+    "legend_selected": "Vybraný termín",
+    "legend_partial": "Omezená kapacita",
+    "legend_occupied": "Obsazeno",
+    "your_selection": "Váš výběr:",
+    "nights_count": "{count} {night_word}",
+    "night_singular": "noc",
+    "night_plural_2_4": "noci",
+    "night_plural_5_plus": "nocí",
+    "for_persons_count": "Pro {count} {person_word}",
+    "person_singular": "osobu",
+    "person_plural_2_4": "osoby",
+    "person_plural_5_plus": "osob",
+    "capacity_object": "Kapacita objektu",
+    "basic_price": "Základní cena",
+    "from": "od",
+    "total_for_stay": "Celkem za pobyt",
+    "price_note_persons": "Cena se odvíjí od počtu osob.",
+    "select_room": "Vybrat {room_type}",
+    "cancel_selection": "Zrušit výběr",
+    "no_capacity": "Pro vybraný termín a počet osob nemáme volné kapacity. Zkuste prosím jiný termín.",
+    "amenity_wifi": "Ano",
+    "amenity_wifi_title": "Wi-Fi připojení",
+    "amenity_shower": "Ano",
+    "amenity_shower_title": "Vlastní sprcha",
+    "amenity_capacity": "Kapacita",
+    "amenity_capacity_title": "Kapacita",
+    "general_price_note": "V nepřízni počasí je možné k ubytování za cenu 500 Kč/ks/noc zapůjčit přímotop."
+  },
+  "akce": {
+    "title": "PLÁNOVANÉ AKCE",
+    "subtitle": "Níže naleznete seznam všech naplánovaných akcí v našem rekreačním areálu.",
+    "no_events": "Momentálně neplánujeme žádné akce.",
+    "event_date": "{date}",
+    "items": {
+      "letni_kino": { "title": "Letní kino pod hvězdami", "desc": "Přijďte si užít promítání českých klasik pod širým nebem. Občerstvení a deky zajištěny." },
+      "aktualne_u_nas": { "title": "Aktuálně u nás", "desc": "Pá-So: 11:30 až 20:00, Ne: 11:30 až 18:00. Léto už je za rohem! Tematickým víkendům dáváme na nějaký čas vale. Náš šéfkuchař pro vás pravidelně aktualizuje jídelní lístek v záložce RESTAURACE." }
+    }
+  },
+  "restaurace": {
+    "title": "Poctivá kuchyně",
+    "menu_title": "Aktuální jídelní lístek",
+    "show_all": "Celý seznam",
+    "hide": "Skrýt",
+    "restaurant_info_title": "Provoz restaurace:",
+    "restaurant_info_text": "Provoz: {provoz}",
+    "quote": "Naše burgery a domácí lívance si zamilujete.",
+    "spring_hours": "Jaro: Pá-So: 11:30 až 20:00, Ne: 11:30 až 18:00.",
+    "restaurant_note": "Aktuální nabídka pro termín 1.5. – 3.5. 2026",
+    "items": {
+      "bramborovy_krem": { "name": "Bramborový krém s domácími škvarky", "desc": "Polévka je grunt!" },
+      "zvihodnene_menu": { "name": "Zvýhodněné menu", "desc": "Polévka a smažený sýr s hranolky a domácí tatarskou omáčkou." },
+      "grilovana_klobasa": { "name": "Domácí grilovaná klobása s chlebem", "desc": "Grilovaná papriková klobáska s hrubozrnnou hořčicí, chlebem a čerstvým salátkem." },
+      "smazeny_syr": { "name": "Smažený sýr s hranolky a domácí tatarkou", "desc": "Dozlatova smažený sýr s hranolky a naší domácí tatarskou omáčkou." },
+      "kureci_steak": { "name": "Kuřecí steak s grilovanou zeleninou", "desc": "Steak z kuřecího prsa s grilovanou zeleninou" },
+      "texas_steak": { "name": "Texas steak s hranolky", "desc": "Grilovaný vepřový steak na dlouhém žebru, mírně mramorovaný podél kosti, podávaný se zlatavými hranolky a domácí tatarkou." },
+      "smazeny_kureci_rizek": { "name": "Smažený kuřecí řízek", "desc": "Dozlatova smažený řízek z kuřecího prsa s petrželovým bramborem a měsíčkem citronu." },
+      "veprove_sote_kari": { "name": "Vepřové soté na kari", "desc": "Vepřové soté se zeleninou na kari, jasmínová rýže" },
+      "kanci_gulas": { "name": "Kančí guláš s chlebem a cibulí", "desc": "Kančí gulášek, pomalu tažený do plné chuti, podávaný s čerstvým chlebem." },
+      "vegetariansky_salat": { "name": "Vegetariánský salát se sýrem Feta", "desc": "Křupavý ledový salát s čerstvou zeleninou, medovo-hořčičným dresinkem a vařeným vejcem." },
+      "veprovy_karbenatek": { "name": "Vepřový karbenátek s bramborem", "desc": "Vepřový karbenátek z bio prasátka, vařený petrželový brambor, salát Coleslaw" }
+    }
+  },
+  "vylety": {
+    "title": "Tipy na výlety",
+    "all": "Všechny",
+    "mild": "Mírná",
+    "medium": "Střední",
+    "hard": "Náročná",
+    "distance_from_area": "{dist} od areálu",
+    "more_info": "Více informací",
+    "walk": "Pěšky",
+    "bike": "Kolo",
+    "show_less": "Zobrazit méně",
+    "show_all": "Zobrazit všechny",
+    "walk_route": "Pěší trasa",
+    "bike_route": "Cyklotrasa",
+    "qr_walk_alt": "QR kód pro pěší trasu",
+    "qr_bike_alt": "QR kód pro cyklotrasu",
+    "items": {
+      "hrad_kost": { "title": "Hrad Kost", "desc": "Gotický hrad byl vybudován na pískovcové skalní vyvýšenině, netypicky však nikoliv vysoko nad okolním terénem, ale v údolí, dokonale ukryt v hlubokých lesích." },
+      "udoli_plakanek": { "title": "Údolí Plakánek", "desc": "Úchvatné romantické údolí, které je obklopené borovým lesem a skalními masivy, bylo v roce 1990 vyhlášeno přírodní rezervací." },
+      "skalni_obydli_barusky": { "title": "Skalní obydlí Barušky", "desc": "Skalní obydlí se nachází asi 350 metrů od hradu Kost a bylo vytesáno pravděpodobně před rokem 1850. Název získalo po posledních obyvatelkách." },
+      "drabske_svetnicky": { "title": "Drábské světničky", "desc": "Původně dřevěný hrad plnil funkci opevněného sídla a strážního bodu. Postaven byl ve druhé třetině 13. století na pískovcových skalách." },
+      "zricenina_zamku_zasadka": { "title": "Zřícenina zámku Zásadka", "desc": "Pozůstatky renesančního zámečku, který vznikl přestavbou gotického hradu. Stojí nad soutokem Jizery a Mohelky." },
+      "prihrazske_skaly": { "title": "Příhrazské skály", "desc": "Naučná stezka vede členitým terénem Příhrazských skal. Nabízí krásné výhledy a herní prvky pro děti." },
+      "stare_hrady_u_prihraz": { "title": "Staré hrady u Příhraz", "desc": "Pozůstatky skalního hradu ze 13. století. Jeho původní název nebyl dochován a dnes je oblíbeným turistickým cílem." },
+      "skalni_hrad_klamorna": { "title": "Skalní hrad Klamorna", "desc": "Skalní hrad Klamorna tvořil spolu s okolními hrady obrannou soustavu v Příhrazských skalách již ve 13. století." },
+      "zricenina_hradu_hynsta": { "title": "Zřícenina hradu Hynšta", "desc": "Pozůstatky hradu ze 13. století vytesaného do jediného skalního bloku, který sloužil i jako modlitebna Českých bratří." },
+      "zricenina_hradu_valecov": { "title": "Zřícenina hradu Valečov", "desc": "Valečov je zřícenina středověkého skalního hradu z počátku 14. století, dominanta západní části Českého ráje." },
+      "statni_hrad_trosky": { "title": "Státní hrad Trosky", "desc": "Bizarní zřícenina gotického hradu, symbol Českého ráje. Byl vybudován na dvou strmých čedičových sopouších." },
+      "zamek_hruba_skala": { "title": "Zámek Hrubá skála", "desc": "Romantický zámek postavený na skupině skalních věží patří mezi nejnavštěvovanější dominanty celého regionu." },
+      "hrad_valdstejn": { "title": "Hrad Valdštejn", "desc": "Nejstarší hrad Českého ráje založený kolem roku 1260 rodovými páni z Valdštejna, předky slavného Albrechta." },
+      "zamek_svijany": { "title": "Zámek Svijany", "desc": "Původně renesanční tvrz přestavěná na zámek. Dnes nabízí expozice o historii kraje a místním pivovarnictví." },
+      "zamek_humprecht": { "title": "Zámek Humprecht", "desc": "Barokní lovecký zámek s unikátní akustickou věží, postavený pro rodinu Černínů jako letní sídlo." },
+      "pekarova_brana": { "title": "Pekařova brána", "desc": "Skalní brána ve tvaru gotického oblouku vytesaná v roce 1914 při stavbě silnice, pojmenovaná po historiku Pekařovi." }
+    }
+  },
+  "sluzby": {
+    "title": "Zážitky na míru",
+    "subtitle": "Zajistíme pro vás vše od půjčení kol po organizaci firemních akcí a svateb.",
+    "items": {
+      "skoly": { "title": "Školy v přírodě", "desc": "Zajišťujeme stravu 5x denně, pitný režim a program s instruktory." },
+      "svatby": { "title": "Svatby v přírodě", "desc": "Obřad na louce u lesa, hostina v rustikálním sále na jednom místě." },
+      "akce": { "title": "Firemní akce", "desc": "Teambuilding, školení nebo firemní večírek. Máme sál s projektorem." }
+    }
+  },
+  "rezervace": {
+    "title": "Rezervujte si svůj pobyt",
+    "contact_us": "Kontaktujte nás",
+    "your_name": "Vaše jméno",
+    "your_email": "Váš E-mail",
+    "arrival": "Příjezd",
+    "departure": "Odjezd",
+    "family_recreation": "Rodinná rekreace",
+    "school_trip": "Škola v přírodě / Tábor",
+    "wedding_event": "Svatba / Firemní akce",
+    "message_placeholder": "Máte konkrétní termín nebo přání?",
+    "summary_title": "Souhrn rezervace",
+    "total_to_pay": "Celková cena k úhradě",
+    "select_accommodation_alert": "Před odesláním si prosím vyberte ubytování v kalendáři výše.",
+    "send_inquiry": "Odeslat poptávku",
+    "new_inquiry_from": "Nová poptávka od",
+    "term": "Termín",
+    "stay_type": "Typ pobytu",
+    "selected_accommodation": "Vybrané ubytování",
+    "total_price": "Celková cena",
+    "client_message": "Zpráva od klienta",
+    "location": "Srbsko 35, 294 02 Kněžmost",
+    "phone": "+420 123 456 789",
+    "email": "rezervace@cejch.cz"
+  },
+  "lightbox": {
+    "prev_image": "Předchozí obrázek",
+    "next_image": "Následující obrázek",
+    "close": "Zavřít"
+  },
+  "footer": {
+    "copyright": "© 2026 Rekreační areál CEJCH. Všechna práva vyhrazena."
+  },
+  "alerts": {
+    "select_term_first": "Nejprve prosím vyberte termín pobytu v kalendáři.",
+    "room_occupied": "Omlouváme se, ale {room_type} je ve vybraném termínu již obsazen.",
+    "inquiry_sent_thanks": "Děkujeme, poptávka odeslána.",
+    "select_accommodation_first": "Prosím vyberte alespoň jedno ubytování v ceníku."
+  }
+}

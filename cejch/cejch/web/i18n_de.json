@@ -1,0 +1,199 @@
+{
+  "common": {
+    "month_names": ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
+    "weekdays_short": ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
+  },
+  "nav": {
+    "logo_text": "CEJCH",
+    "ubytovani": "Unterkunft",
+    "sluzby": "Dienstleistungen",
+    "akce": "Veranstaltungen",
+    "restaurace": "Restaurant",
+    "vylety": "Ausflüge",
+    "rezervovat": "Buchen",
+    "menu_open": "Menü öffnen",
+    "menu_close": "Menü schließen",
+    "explore_area": "Gelände erkunden"
+  },
+  "hero": {
+    "title": "Willkommen im Herzen des Böhmischen Paradieses",
+    "subtitle": "Ruhe der Kiefernwälder, Sandsteinfelsen zum Greifen nah und familiäre Atmosphäre.",
+    "book_stay": "Aufenthalt buchen"
+  },
+  "ubytovani": {
+    "title": "Komfortable Unterkunft",
+    "subtitle": "Wählen Sie den Unterkunftsstil, der am besten zu Ihnen passt.",
+    "card_tag_junior": "Am beliebtesten",
+    "card_tag_premium": "Luxuriöse Wahl",
+    "price_from": "ab {price}"
+  },
+  "rooms": {
+    "junior": { "title": "Hütte JUNIOR", "desc": "Vierbett-Holzhütten in unmittelbarer Nähe zum Wald. Ideal für Naturliebhaber." },
+    "junior_m": { "title": "Hütte JUNIOR M", "desc": "Fünfbett-Hütten mit modernem Interieur und kleiner Terrasse. Geeignet für Familien mit Kindern." },
+    "apartman": { "title": "APARTMENT", "desc": "Neu renovierte Zimmer mit eigenem Bad und Blick ins Tal." },
+    "studio_male": { "title": "STUDIO klein", "desc": "Kompaktes Studio für zwei Personen mit Kochnische und moderner Ausstattung." },
+    "studio_velke": { "title": "STUDIO groß", "desc": "Geräumiges Studio für vier Personen mit separatem Schlafzimmer und voll ausgestatteter Küche." },
+    "rodina": { "title": "Hütte FAMILIE", "desc": "Große Hütte mit mehreren Schlafzimmern, ideal für größere Familien oder Gruppen von Freunden." },
+    "javorina": { "title": "Hütte JAVORINA", "desc": "Freistehende Hütte mit großem Garten und Privatsphäre, ideal für einen ruhigen Urlaub." },
+    "premium": { "title": "Hütte PREMIUM", "desc": "Luxus-Hütte mit gehobener Ausstattung, Whirlpool und Panoramablick." },
+    "ubytovna": { "title": "Herberge", "desc": "Einfache Unterbringung in Zimmern mit Gemeinschaftsbad im Hauptgebäude." }
+  },
+  "cenik": {
+    "title": "Verfügbarkeit der Unterkünfte",
+    "subtitle": "Wählen Sie ein Datum im Kalender und die Personenanzahl aus, um verfügbare Hütten und Preise anzuzeigen.",
+    "persons_label": "Personenanzahl:",
+    "all_persons": "Alle",
+    "currency_label": "Währung:",
+    "calendar_nav_label": "Kalender:",
+    "prev_month": "Vorheriger Monat",
+    "next_month": "Nächster Monat",
+    "weekdays": ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
+    "legend_free": "Frei",
+    "legend_weekend": "Wochenende",
+    "legend_holiday": "Feiertag",
+    "legend_selected": "Ausgewählter Termin",
+    "legend_partial": "Begrenzte Kapazität",
+    "legend_occupied": "Belegt",
+    "your_selection": "Ihre Wahl:",
+    "nights_count": "{count} {night_word}",
+    "night_singular": "Nacht",
+    "night_plural_2_4": "Nächte",
+    "night_plural_5_plus": "Nächte",
+    "for_persons_count": "Für {count} {person_word}",
+    "person_singular": "Person",
+    "person_plural_2_4": "Personen",
+    "person_plural_5_plus": "Personen",
+    "capacity_object": "Objektkapazität",
+    "basic_price": "Grundpreis",
+    "from": "ab",
+    "total_for_stay": "Gesamtpreis",
+    "price_note_persons": "Der Preis richtet sich nach der Personenanzahl.",
+    "select_room": "{room_type} wählen",
+    "cancel_selection": "Auswahl aufheben",
+    "no_capacity": "Für den gewählten Zeitraum und die Personenanzahl haben wir keine freien Kapazitäten. Bitte versuchen Sie ein anderes Datum.",
+    "amenity_wifi": "Ja",
+    "amenity_wifi_title": "WLAN-Verbindung",
+    "amenity_shower": "Ja",
+    "amenity_shower_title": "Eigene Dusche",
+    "amenity_capacity": "Kapazität",
+    "amenity_capacity_title": "Kapazität",
+    "general_price_note": "Bei schlechtem Wetter kann ein Heizgerät zum Preis von 500 CZK/Stk/Nacht gemietet werden."
+  },
+  "akce": {
+    "title": "GEPLANTE VERANSTALTUNGEN",
+    "subtitle": "Unten finden Sie eine Liste aller geplanten Veranstaltungen in unserem Erholungsgebiet.",
+    "no_events": "Momentan sind keine Veranstaltungen geplant.",
+    "event_date": "{date}",
+    "items": {
+      "letni_kino": { "title": "Sommerkino unter den Sternen", "desc": "Genießen Sie tschechische Klassiker unter freiem Himmel. Erfrischungen und Decken sind vorhanden." },
+      "aktualne_u_nas": { "title": "Aktuelles bei uns", "desc": "Fr-Sa: 11:30 bis 20:00 Uhr, So: 11:30 bis 18:00 Uhr. Der Sommer steht vor der Tür! Wir legen eine Pause von Themenwochenenden ein. Unser Küchenchef aktualisiert regelmäßig die Speisekarte im Bereich RESTAURANT." }
+    }
+  },
+  "restaurace": {
+    "title": "Ehrliche Küche",
+    "menu_title": "Aktuelle Speisekarte",
+    "show_all": "Ganze Liste",
+    "hide": "Verbergen",
+    "restaurant_info_title": "Restaurantbetrieb:",
+    "restaurant_info_text": "Betrieb: {provoz}",
+    "quote": "Sie werden unsere Burger und hausgemachten Pfannkuchen lieben.",
+    "spring_hours": "Frühling: Fr-Sa: 11:30 bis 20:00, So: 11:30 bis 18:00.",
+    "restaurant_note": "Aktuelles Angebot für den Zeitraum 1.5. – 3.5. 2026",
+    "items": {
+      "bramborovy_krem": { "name": "Kartoffelcremesuppe mit hausgemachten Grieben", "desc": "Suppe ist das A und O!" },
+      "zvihodnene_menu": { "name": "Spar-Menü", "desc": "Suppe und panierter Käse mit Pommes und hausgemachter Remoulade." },
+      "grilovana_klobasa": { "name": "Hausgemachte Grillwurst mit Brot", "desc": "Gegrillte Paprikawurst mit grobem Senf, Brot und frischem Salat." },
+      "smazeny_syr": { "name": "Panierter Käse mit Pommes und hausgemachter Remoulade", "desc": "Goldgelb gebratener Käse mit Pommes und unserer hausgemachten Remoulade." },
+      "kureci_steak": { "name": "Hähnchensteak mit Grillgemüse", "desc": "Hähnchenbruststeak mit gegrilltem Gemüse" },
+      "texas_steak": { "name": "Texas Steak mit Pommes", "desc": "Gegrilltes Schweinesteak an der langen Rippe, leicht marmoriert, serviert mit goldgelben Pommes und hausgemachter Remoulade." },
+      "smazeny_kureci_rizek": { "name": "Paniertes Hähnchenschnitzel", "desc": "Goldgelb gebratenes Hähnchenbrustschnitzel mit Petersilienkartoffeln und einer Zitronenspalte." },
+      "veprove_sote_kari": { "name": "Schweinegeschnetzeltes mit Curry", "desc": "Schweinegeschnetzeltes mit Gemüse in Curry, Jasminreis" },
+      "kanci_gulas": { "name": "Wildschweingulasch mit Brot und Zwiebeln", "desc": "Wildschweingulasch, langsam geschmort für vollen Geschmack, serviert mit frischem Brot." },
+      "vegetariansky_salat": { "name": "Vegetarischer Salat mit Feta-Käse", "desc": "Knackiger Eisbergsalat mit frischem Gemüse, Honig-Senf-Dressing und gekochtem Ei." },
+      "veprovy_karbenatek": { "name": "Schweinefrikadelle mit Kartoffeln", "desc": "Schweinefrikadelle vom Bio-Schwein, Petersilienkartoffeln, Krautsalat Coleslaw" }
+    }
+  },
+  "vylety": {
+    "title": "Ausflugstipps",
+    "all": "Alle",
+    "mild": "Leicht",
+    "medium": "Mittel",
+    "hard": "Schwer",
+    "distance_from_area": "{dist} vom Gelände",
+    "more_info": "Mehr Informationen",
+    "walk": "Zu Fuß",
+    "bike": "Fahrrad",
+    "show_less": "Weniger anzeigen",
+    "show_all": "Alle anzeigen",
+    "walk_route": "Wanderroute",
+    "bike_route": "Radroute",
+    "qr_walk_alt": "QR-Code für Wanderroute",
+    "qr_bike_alt": "QR-Code für Radroute",
+    "items": {
+      "hrad_kost": { "title": "Burg Kost", "desc": "Die gotische Burg wurde auf einem Sandsteinfelsvorsprung erbaut, untypischerweise jedoch nicht hoch über dem Gelände, sondern im Tal." },
+      "udoli_plakanek": { "title": "Plakánek-Tal", "desc": "Ein atemberaubendes romantisches Tal, umgeben von Kiefernwäldern und Felsmassiven." },
+      "skalni_obydli_barusky": { "title": "Felsenwohnung Barušky", "desc": "Die Felsenwohnung befindet sich ca. 350 m von der Burg Kost entfernt." },
+      "drabske_svetnicky": { "title": "Drábské světničky", "desc": "Ursprünglich eine Holzburg, diente sie als befestigter Sitz und Wachpunkt." },
+      "zricenina_zamku_zasadka": { "title": "Schlossruine Zásadka", "desc": "Überreste eines Renaissanceschlosses, das durch Umbau einer gotischen Burg entstand." },
+      "prihrazske_skaly": { "title": "Příhrazy-Felsen", "desc": "Der Lehrpfad führt durch das zerklüftete Gelände der Příhrazy-Felsen." },
+      "stare_hrady_u_prihraz": { "title": "Alte Burgen bei Příhrazy", "desc": "Überreste einer Felsenburg aus dem 13. Jahrhundert." },
+      "skalni_hrad_klamorna": { "title": "Felsenburg Klamorna", "desc": "Die Felsenburg Klamorna bildete zusammen mit den umliegenden Burgen ein Verteidigungssystem." },
+      "zricenina_hradu_hynsta": { "title": "Burgruine Hynšta", "desc": "Überreste einer Burg aus dem 13. Jahrhundert, die in einen einzigen Felsblock gehauen wurde." },
+      "zricenina_hradu_valecov": { "title": "Burgruine Valečov", "desc": "Valečov ist die Ruine einer mittelalterlichen Felsenburg aus dem frühen 14. Jahrhundert." },
+      "statni_hrad_trosky": { "title": "Burg Trosky", "desc": "Eine bizarre Ruine einer gotischen Burg, das Symbol des Böhmischen Paradieses." },
+      "zamek_hruba_skala": { "title": "Schloss Hrubá Skála", "desc": "Ein romantisches Schloss, das auf einer Gruppe von Felstürmen erbaut wurde." },
+      "hrad_valdstejn": { "title": "Burg Valdštejn", "desc": "Die älteste Burg im Böhmischen Paradies, um 1260 von den Herren von Valdštejn gegründet." },
+      "zamek_svijany": { "title": "Schloss Svijany", "desc": "Ursprünglich eine Renaissance-Festung, die zum Schloss umgebaut wurde." },
+      "zamek_humprecht": { "title": "Schloss Humprecht", "desc": "Ein barockes Jagdschloss mit einem einzigartigen Akustikturm." },
+      "pekarova_brana": { "title": "Pekař-Tor", "desc": "Ein Felsentor in Form eines gotischen Bogens, das 1914 beim Straßenbau in den Fels gehauen wurde." }
+    }
+  },
+  "sluzby": {
+    "title": "Erlebnisse nach Maß",
+    "subtitle": "Wir organisieren alles vom Fahrradverleih bis hin zur Planung von Firmen- und Hochzeitsfeiern.",
+    "items": {
+      "skoly": { "title": "Landschulheime", "desc": "Wir bieten Verpflegung 5x täglich, Trinkregime und Programm mit Instruktoren an." },
+      "svatby": { "title": "Hochzeiten im Grünen", "desc": "Trauung auf der Waldwiese, Festessen im rustikalen Saal – alles an einem Ort." },
+      "akce": { "title": "Firmenveranstaltungen", "desc": "Teambuilding, Schulungen oder Firmenfeiern. Wir haben einen Saal mit Projektor." }
+    }
+  },
+  "rezervace": {
+    "title": "Buchen Sie Ihren Aufenthalt",
+    "contact_us": "Kontaktieren Sie uns",
+    "your_name": "Ihr Name",
+    "your_email": "Ihre E-Mail",
+    "arrival": "Anreise",
+    "departure": "Abreise",
+    "family_recreation": "Familienerholung",
+    "school_trip": "Schullandheim / Lager",
+    "wedding_event": "Hochzeit / Firmenfeier",
+    "message_placeholder": "Haben Sie einen konkreten Termin oder Wunsch?",
+    "summary_title": "Buchungsübersicht",
+    "total_to_pay": "Gesamtbetrag zu zahlen",
+    "select_accommodation_alert": "Bitte wählen Sie zuerst eine Unterkunft im Kalender oben aus.",
+    "send_inquiry": "Anfrage senden",
+    "new_inquiry_from": "Neue Anfrage von",
+    "term": "Termin",
+    "stay_type": "Aufenthaltsart",
+    "selected_accommodation": "Ausgewählte Unterkunft",
+    "total_price": "Gesamtpreis",
+    "client_message": "Nachricht vom Kunden",
+    "location": "Srbsko 35, 294 02 Kněžmost",
+    "phone": "+420 123 456 789",
+    "email": "reservation@cejch.cz"
+  },
+  "lightbox": {
+    "prev_image": "Vorheriges Bild",
+    "next_image": "Nächstes Bild",
+    "close": "Schließen"
+  },
+  "footer": {
+    "copyright": "© 2026 Erholungsgebiet CEJCH. Alle Rechte vorbehalten."
+  },
+  "alerts": {
+    "select_term_first": "Bitte wählen Sie zuerst einen Zeitraum im Kalender aus.",
+    "room_occupied": "Entschuldigung, aber {room_type} ist im gewählten Zeitraum bereits belegt.",
+    "inquiry_sent_thanks": "Vielen Dank, Anfrage gesendet.",
+    "select_accommodation_first": "Bitte wählen Sie mindestens eine Unterkunft in der Preisliste aus."
+  }
+}

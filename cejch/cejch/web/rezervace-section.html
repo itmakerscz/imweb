@@ -1,59 +1,59 @@
 <section id="rezervace">
-    <h2 class="section-title">Rezervujte si svůj pobyt</h2>
+    <h2 class="section-title">{{ t('rezervace.title') }}</h2>
     <div class="contact-container">
         <!-- Kontaktní informace vlevo -->
         <aside class="contact-sidebar">
             <div class="contact-methods">
-                <h3>Kontaktujte nás</h3>
+                <h3>{{ t('rezervace.contact_us') }}</h3>
                 <a href="https://mapy.cz/turisticka?source=firm&id=12741218" target="_blank" class="contact-item">
                     <span class="material-icons-outlined">location_on</span>
-                    <span>Srbsko 35, 294 02 Kněžmost</span>
+                    <span>{{ t('rezervace.location') }}</span>
                 </a>
                 <div class="contact-item">
                     <span class="material-icons-outlined">phone</span>
-                    <span>+420 123 456 789</span>
+                    <span>{{ t('rezervace.phone') }}</span>
                 </div>
                 <div class="contact-item">
                     <span class="material-icons-outlined">email</span>
-                    <span>rezervace@cejch.cz</span>
+                    <span>{{ t('rezervace.email') }}</span>
                 </div>
             </div>
 
             <div class="info-box">
                 <span class="material-icons-outlined text-secondary">restaurant</span>
-                <p><strong>Provoz restaurace:</strong><br>{{ data.restaurace_info.provoz }}</p>
+                <p><strong>{{ t('restaurace.restaurant_info_title') }}</strong><br>{{ data.restaurace_info.provoz }}</p>
             </div>
         </aside>
 
         <!-- Rezervační formulář vpravo -->
         <form @submit.prevent="submitForm">
             <div class="form-row">
-                <input type="text" v-model="form.name" placeholder="Vaše jméno" required>
-                <input type="email" v-model="form.email" placeholder="Váš E-mail" required>
+                <input type="text" v-model="form.name" :placeholder="t('rezervace.your_name')" required>
+                <input type="email" v-model="form.email" :placeholder="t('rezervace.your_email')" required>
             </div>
             
             <div class="form-row">
                 <div class="input-with-label">
-                    <label>Příjezd</label>
+                    <label>{{ t('rezervace.arrival') }}</label>
                     <input type="date" v-model="form.dateFrom" :min="new Date().toISOString().split('T')[0]">
                 </div>
                 <div class="input-with-label">
-                    <label>Odjezd</label>
+                    <label>{{ t('rezervace.departure') }}</label>
                     <input type="date" v-model="form.dateTo" :min="form.dateFrom || new Date().toISOString().split('T')[0]">
                 </div>
             </div>
 
             <select v-model="form.type">
-                <option value="rodina">Rodinná rekreace</option>
-                <option value="skola">Škola v přírodě / Tábor</option>
-                <option value="akce">Svatba / Firemní akce</option>
+                <option value="rodina">{{ t('rezervace.family_recreation') }}</option>
+                <option value="skola">{{ t('rezervace.school_trip') }}</option>
+                <option value="akce">{{ t('rezervace.wedding_event') }}</option>
             </select>
 
-            <textarea v-model="form.msg" rows="4" placeholder="Máte konkrétní termín nebo přání?"></textarea>
+            <textarea v-model="form.msg" rows="4" :placeholder="t('rezervace.message_placeholder')"></textarea>
 
             <!-- Souhrn vybraných položek (Faktura) -->
             <div v-if="selectedAccommodationsSummary.length > 0" class="booking-summary">
-                <h3>Souhrn rezervace ({{ nightsCount }} {{ nightsCount == 1 ? 'noc' : (nightsCount < 5 ? 'noci' : 'nocí') }})</h3>
+                <h3>{{ t('rezervace.summary_title') }} ({{ t('cenik.nights_count', { count: nightsCount, night_word: pluralizeNights(nightsCount) }) }})</h3>
                 <ul>
                     <li v-for="item in selectedAccommodationsSummary" :key="item.typ">
                         <span>{{ item.typ }}</span>
@@ -61,17 +61,17 @@
                     </li>
                 </ul>
                 <div class="total-row">
-                    <span class="total-label">Celková cena</span>
+                    <span class="total-label">{{ t('rezervace.total_to_pay') }}</span>
                     <span class="total-amount">{{ totalPrice }}</span>
                 </div>
             </div>
 
             <div v-else class="form-alert">
                 <span class="material-icons-outlined">info</span>
-                <span>Před odesláním si prosím vyberte ubytování v kalendáři výše.</span>
+                <span>{{ t('rezervace.select_accommodation_alert') }}</span>
             </div>
 
-            <button type="submit" class="primary">Odeslat poptávku</button>
+            <button type="submit" class="primary">{{ t('rezervace.send_inquiry') }}</button>
         </form>
     </div>
 </section>

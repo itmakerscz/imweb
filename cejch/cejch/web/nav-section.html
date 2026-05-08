@@ -1,15 +1,25 @@
 <nav :class="{ 'nav-hidden': isNavHidden }">
-    <a href="#" class="logo" @click.prevent="scrollTo('app')">
-        <span class="material-icons-outlined">terrain</span> CEJCH
+    <a href="#" class="logo" @click.prevent="scrollTo('app')" :aria-label="t('nav.logo_text')">
+        <span class="material-icons-outlined">terrain</span> {{ t('nav.logo_text') }}
     </a>
-    <button class="mobile-toggle" @click="isMenuOpen = !isMenuOpen" :aria-label="isMenuOpen ? 'Zavřít menu' : 'Otevřít menu'">
+    <button class="mobile-toggle" @click="isMenuOpen = !isMenuOpen" :aria-label="isMenuOpen ? t('nav.menu_close') : t('nav.menu_open')">
         <span class="material-icons-outlined">{{ isMenuOpen ? 'close' : 'menu' }}</span>
     </button>
     <ul class="nav-links" :class="{ active: isMenuOpen }">
-        <li><a href="#ubytovani" @click="isMenuOpen = false" :class="{ active: activeSection === 'ubytovani' || activeSection === 'cenik' }">Ubytování</a></li>
-        <li><a href="#akce" @click="isMenuOpen = false" :class="{ active: activeSection === 'akce' }">Akce</a></li>
-        <li><a href="#restaurace" @click="isMenuOpen = false" :class="{ active: activeSection === 'restaurace' }">Restaurace</a></li>
-        <li><a href="#vylety" @click="isMenuOpen = false" :class="{ active: activeSection === 'vylety' }">Výlety</a></li>
-        <li><a href="#rezervace" class="btn-res" @click="isMenuOpen = false" :class="{ active: activeSection === 'rezervace' }">Rezervovat</a></li>
+        <li><a href="#ubytovani" @click="isMenuOpen = false" :class="{ active: activeSection === 'ubytovani' || activeSection === 'cenik' }">{{ t('nav.ubytovani') }}</a></li>
+        <li><a href="#sluzby" @click="isMenuOpen = false" :class="{ active: activeSection === 'sluzby' }">{{ t('nav.sluzby') }}</a></li>
+        <li><a href="#akce" @click="isMenuOpen = false" :class="{ active: activeSection === 'akce' }">{{ t('nav.akce') }}</a></li>
+        <li><a href="#restaurace" @click="isMenuOpen = false" :class="{ active: activeSection === 'restaurace' }">{{ t('nav.restaurace') }}</a></li>
+        <li><a href="#vylety" @click="isMenuOpen = false" :class="{ active: activeSection === 'vylety' }">{{ t('nav.vylety') }}</a></li>
+        <li><a href="#rezervace" class="btn-res" @click="isMenuOpen = false" :class="{ active: activeSection === 'rezervace' }">{{ t('nav.rezervovat') }}</a></li>
+        <li class="lang-switcher">
+            <button v-for="lang in languages" 
+                    :key="lang.code" 
+                    @click="setLang(lang.code)" 
+                    :class="{ active: currentLang === lang.code }" 
+                    :title="lang.label">
+                {{ lang.flag }}
+            </button>
+        </li>
     </ul>
 </nav>

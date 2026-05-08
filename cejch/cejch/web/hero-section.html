@@ -1,8 +1,8 @@
 <header class="hero" id="app">
-    <h1>Vítejte v srdci Českého ráje</h1>
-    <p>Klid borových lesů, pískovcové skály na dosah a domácí atmosféra.</p>
+    <h1>{{ t('hero.title') }}</h1>
+    <p>{{ t('hero.subtitle') }}</p>
     <div class="hero-btns">
-        <button class="primary" @click="scrollTo('rezervace')">Rezervovat pobyt</button>
-        <button class="outline" @click="scrollTo('ubytovani')">Prohlédnout areál</button>
+        <button class="primary" @click="scrollTo('rezervace')">{{ t('hero.book_stay') }}</button>
+        <button class="outline" @click="scrollTo('ubytovani')">{{ t('nav.explore_area') }}</button>
     </div>
 </header>

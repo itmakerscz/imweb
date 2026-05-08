@@ -1,7 +1,7 @@
 <section id="cenik">
     <header class="section-header">
-        <h2 class="section-title">Obsazenost ubytování</h2>
-        <p class="section-subtitle">Vyberte si termín v kalendáři a počet osob pro zobrazení dostupných chatek a cen.</p>
+        <h2 class="section-title">{{ t('cenik.title') }}</h2>
+        <p class="section-subtitle">{{ t('cenik.subtitle') }}</p>
     </header>
 
     <div class="booking-layout">
@@ -9,33 +9,33 @@
         <div class="calendar-container">
             <div class="calendar-header">
                 <div class="filter-group">
-                    <label class="filter-label">Počet osob:</label>
+                    <label class="filter-label">{{ t('cenik.persons_label') }}</label>
                     <select v-model="selectedPersons" class="custom-select">
-                        <option value="all">Všechny</option>
+                        <option value="all">{{ t('cenik.all_persons') }}</option>
                         <option v-for="n in 12" :key="n" :value="n">{{ n }}</option>
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label class="filter-label">Měna:</label>
+                    <label class="filter-label">{{ t('cenik.currency_label') }}</label>
                     <div class="currency-toggle">
                         <button @click="currency = 'CZK'" :class="{ active: currency === 'CZK' }">CZK</button>
                         <button @click="currency = 'EUR'" :class="{ active: currency === 'EUR' }">EUR</button>
                     </div>
                 </div>
                 <div class="filter-group align-center">
-                    <label class="filter-label">Posunout kalendář:</label>
+                    <label class="filter-label">{{ t('cenik.calendar_nav_label') }}</label>
                     <div class="calendar-nav">
-                        <button @click="changeMonth(-1)" class="outline btn-nav" title="Předchozí měsíc">&lt;</button>
-                        <button @click="changeMonth(1)" class="outline btn-nav" title="Následující měsíc">&gt;</button>
+                        <button @click="changeMonth(-1)" class="outline btn-nav" :title="t('cenik.prev_month')">&lt;</button>
+                        <button @click="changeMonth(1)" class="outline btn-nav" :title="t('cenik.next_month')">&gt;</button>
                     </div>
                 </div>
             </div>
 
             <transition-group :name="calendarTransition" tag="div" class="calendars-wrapper">
                 <div v-for="month in multiMonthView" :key="month.year + '-' + month.month" class="month-view">
-                    <h3 class="month-title">{{ month.name }} {{ month.year }}</h3>
+                    <h3 class="month-title">{{ t('common.month_names')[month.month] }} {{ month.year }}</h3>
                     <div class="calendar-grid">
-                        <div class="calendar-weekday" v-for="day in ['Po', 'Út', 'St', 'Čt', 'Pá', 'So', 'Ne']" :key="day">{{ day }}</div>
+                        <div class="calendar-weekday" v-for="day in t('common.weekdays_short')" :key="day">{{ day }}</div>
                         <div v-for="day in month.days" :key="day.fullDate" 
                              class="calendar-day" 
                              :class="{ 'other-month': !day.currentMonth, occupied: day.date && isDateOccupied(day.fullDate), 'partially-occupied': day.date && !isDateOccupied(day.fullDate) && isDatePartiallyOccupied(day.fullDate), today: isToday(day.fullDate), selected: isDateSelected(day.fullDate), 'in-range': isDateInRange(day.fullDate), past: day.date && isPastDay(day.fullDate), holiday: isPublicHoliday(day.fullDate) }"
@@ -47,12 +47,12 @@
             </transition-group>
 
             <div class="calendar-legend">
-                <div class="legend-item"><div class="legend-box legend-box-free"></div> Volno</div>
-                <div class="legend-item"><div class="legend-box legend-box-weekend"></div> Víkend</div>
-                <div class="legend-item"><span class="legend-box-holiday-dot">•</span> Svátek</div>
-                <div class="legend-item"><div class="legend-box legend-box-selected"></div> Vybraný termín</div>
-                <div class="legend-item"><div class="legend-box legend-box-partial"></div> Omezená kapacita</div>
-                <div class="legend-item"><div class="legend-box legend-box-occupied"></div> Obsazeno</div>
+                <div class="legend-item"><div class="legend-box legend-box-free"></div> {{ t('cenik.legend_free') }}</div>
+                <div class="legend-item"><div class="legend-box legend-box-weekend"></div> {{ t('cenik.legend_weekend') }}</div>
+                <div class="legend-item"><span class="legend-box-holiday-dot">•</span> {{ t('cenik.legend_holiday') }}</div>
+                <div class="legend-item"><div class="legend-box legend-box-selected"></div> {{ t('cenik.legend_selected') }}</div>
+                <div class="legend-item"><div class="legend-box legend-box-partial"></div> {{ t('cenik.legend_partial') }}</div>
+                <div class="legend-item"><div class="legend-box legend-box-occupied"></div> {{ t('cenik.legend_occupied') }}</div>
             </div>
         </div>
 
@@ -60,50 +60,50 @@
         <aside class="booking-results">
             <transition name="fade">
                 <div v-if="selectedDateFrom && selectedDateTo" class="results-summary">
-                    <h4 class="text-primary">Váš výběr:</h4>
-                    <p>{{ new Date(selectedDateFrom).toLocaleDateString('cs-CZ') }} – {{ new Date(selectedDateTo).toLocaleDateString('cs-CZ') }} <strong>({{ nightsCount }} nocí)</strong></p>
+                    <h4 class="text-primary">{{ t('cenik.your_selection') }}</h4>
+                    <p>{{ new Date(selectedDateFrom).toLocaleDateString(currentLang + '-' + currentLang.toUpperCase()) }} – {{ new Date(selectedDateTo).toLocaleDateString(currentLang + '-' + currentLang.toUpperCase()) }} <strong>({{ t('cenik.nights_count', { count: nightsCount, night_word: pluralizeNights(nightsCount) }) }})</strong></p>
                 </div>
             </transition>
 
             <div v-if="filteredPrices.length > 0">
                 <div class="grid-3">
                     <article class="card" v-for="row in filteredPrices" :key="row.typ" :class="{ 'selected': form.selectedAccommodations.includes(row.typ) }">
-                        <span v-if="row.typ === 'Chatka JUNIOR'" class="card-tag">Nejoblíbenější</span>
-                        <span v-if="row.typ === 'Chata PREMIUM'" class="card-tag">Luxusní volba</span>
+                        <span v-if="row.typ === 'junior'" class="card-tag">{{ t('ubytovani.card_tag_junior') }}</span>
+                        <span v-if="row.typ === 'premium'" class="card-tag">{{ t('ubytovani.card_tag_premium') }}</span>
                         <img :src="getRoomImage(row.typ)" :alt="row.typ">
                         <div class="card-content">
                             <header class="price-header">
-                                <h3>{{ row.typ }}</h3>
+                                <h3>{{ t('rooms.' + row.typ + '.title') }}</h3>
                             </header>
                             
                             <div class="price-amenities">
-                                <div class="amenity" title="Wi-Fi připojení"><span class="material-icons-outlined">wifi</span> Ano</div>
-                                <div class="amenity" title="Vlastní sprcha"><span class="material-icons-outlined">shower</span> Ano</div>
-                                <div class="amenity" title="Kapacita"><span class="material-icons-outlined">groups</span> {{ row.max_persons }}</div>
+                                <div class="amenity" :title="t('cenik.amenity_wifi_title')"><span class="material-icons-outlined">wifi</span> {{ t('cenik.amenity_wifi') }}</div>
+                                <div class="amenity" :title="t('cenik.amenity_shower_title')"><span class="material-icons-outlined">shower</span> {{ t('cenik.amenity_shower') }}</div>
+                                <div class="amenity" :title="t('cenik.amenity_capacity_title')"><span class="material-icons-outlined">groups</span> {{ row.max_persons }}</div>
                             </div>
 
                             <div class="price-details">
                                 <div class="price-row" v-if="selectedPersons !== 'all'">
-                                    <span>Pro {{ selectedPersons }} {{ selectedPersons == 1 ? 'osobu' : (selectedPersons < 5 ? 'osoby' : 'osob') }}</span>
+                                    <span>{{ t('cenik.for_persons_count', { count: selectedPersons, person_word: pluralizePersons(selectedPersons) }) }}</span>
                                     <strong>{{ displayPrice(row.prices[selectedPersons]) }}/noc</strong>
                                 </div>
                                 <div class="price-row" v-else>
-                                    <span>Kapacita objektu</span>
-                                    <strong>{{ row.max_persons }} osob</strong>
+                                    <span>{{ t('cenik.capacity_object') }}</span>
+                                    <strong>{{ row.max_persons }} {{ pluralizePersons(row.max_persons) }}</strong>
                                 </div>
                                 <div class="price-row" v-if="selectedPersons === 'all'">
-                                    <span>Základní cena</span>
-                                    <strong>od {{ displayPrice(row.prices["1"]) }}</strong>
+                                    <span>{{ t('cenik.basic_price') }}</span>
+                                    <strong>{{ t('cenik.from') }} {{ displayPrice(row.prices["1"]) }}</strong>
                                 </div>
                                 <div class="price-row price-total" v-if="nightsCount > 0">
-                                    <span>Celkem za pobyt</span>
+                                    <span>{{ t('cenik.total_for_stay') }}</span>
                                     <strong class="text-primary">{{ getStayPrice(row) }}</strong>
                                 </div>
                             </div>
-                            <p class="price-note" v-if="selectedPersons === 'all'">Cena se odvíjí od počtu osob.</p>
+                            <p class="price-note" v-if="selectedPersons === 'all'">{{ t('cenik.price_note_persons') }}</p>
                             
-                            <button :class="form.selectedAccommodations.includes(row.typ) ? 'outline' : 'primary'" class="btn-booking" @click="toggleAccommodationSelection(row.typ)">
-                                {{ form.selectedAccommodations.includes(row.typ) ? 'Zrušit výběr' : 'Vybrat ' + row.typ }}
+                            <button :class="form.selectedAccommodations.includes(row.typ) ? 'outline' : 'primary'" class="btn-booking" @click="toggleAccommodationSelection(row.typ)" :title="form.selectedAccommodations.includes(row.typ) ? t('cenik.cancel_selection') : t('cenik.select_room', { room_type: row.typ })">
+                                {{ form.selectedAccommodations.includes(row.typ) ? t('cenik.cancel_selection') : t('cenik.select_room', { room_type: row.typ }) }}
                             </button>
                         </div>
                     </article>
@@ -111,10 +111,10 @@
             </div>
             <div v-else class="empty-state">
                 <span class="material-icons-outlined empty-state-icon">block</span>
-                <p class="empty-state-text">Pro vybraný termín a počet osob nemáme volné kapacity. Zkuste prosím jiný termín.</p>
+                <p class="empty-state-text">{{ t('cenik.no_capacity') }}</p>
             </div>
         </aside>
     </div>
 
-    <p class="price-note mt-2">{{ data.ceny_poznamka }}</p>
+    <p class="price-note mt-2">{{ t('cenik.general_price_note') }}</p>
 </section>

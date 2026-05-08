@@ -1,11 +1,11 @@
 <section id="sluzby">
-    <h2 class="section-title">Zážitky na míru</h2>
+    <h2 class="section-title">{{ t('sluzby.title') }}</h2>
     <div class="grid-3">
-        <div class="card" v-for="service in data.sluzby" :key="service.title" style="text-align: center;">
+        <div class="card" v-for="service in data.sluzby" :key="service.id" style="text-align: center;">
             <div class="card-content">
                 <span class="material-icons-outlined" style="font-size: 3.5rem; color: var(--secondary); margin-bottom: 1rem;">{{ service.icon }}</span>
-                <h3>{{ service.title }}</h3>
-                <p>{{ service.desc }}</p>
+                <h3>{{ t('sluzby.items.' + service.id + '.title') }}</h3>
+                <p>{{ t('sluzby.items.' + service.id + '.desc') }}</p>
             </div>
         </div>
     </div>

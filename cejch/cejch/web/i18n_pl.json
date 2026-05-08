@@ -1,0 +1,199 @@
+{
+  "common": {
+    "month_names": ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"],
+    "weekdays_short": ["Pn", "Wt", "Śr", "Cz", "Pt", "So", "Nd"]
+  },
+  "nav": {
+    "logo_text": "CEJCH",
+    "ubytovani": "Zakwaterowanie",
+    "sluzby": "Usługi",
+    "akce": "Wydarzenia",
+    "restaurace": "Restauracja",
+    "vylety": "Wycieczki",
+    "rezervovat": "Zarezerwuj",
+    "menu_open": "Otwórz menu",
+    "menu_close": "Zamknij menu",
+    "explore_area": "Zobacz okolicę"
+  },
+  "hero": {
+    "title": "Witaj w sercu Czeskiego Raju",
+    "subtitle": "Spokój sosnowych lasów, piaskowcowe skały na wyciągnięcie ręki i domowa atmosfera.",
+    "book_stay": "Zarezerwuj pobyt"
+  },
+  "ubytovani": {
+    "title": "Komfortowe zakwaterowanie",
+    "subtitle": "Wybierz styl zakwaterowania, który najbardziej Ci odpowiada.",
+    "card_tag_junior": "Najpopularniejsze",
+    "card_tag_premium": "Wybór luksusowy",
+    "price_from": "od {price}"
+  },
+  "rooms": {
+    "junior": { "title": "Domek JUNIOR", "desc": "Czteroosobowe domki drewniane w bezpośrednim sąsiedztwie lasu. Idealne dla miłośników przyrody." },
+    "junior_m": { "title": "Domek JUNIOR M", "desc": "Pięcioosobowe domki z nowoczesnym wnętrzem i małym tarasem. Odpowiednie dla rodzin z dziećmi." },
+    "apartman": { "title": "APARTAMENT", "desc": "Nowo wyremontowane pokoje z prywatną łazienką i widokiem na dolinę." },
+    "studio_male": { "title": "STUDIO małe", "desc": "Kompaktowe studio dla dwojga z aneksem kuchennym i nowoczesnym wyposażeniem." },
+    "studio_velke": { "title": "STUDIO duże", "desc": "Przestronne studio dla czterech osób z oddzielną sypialnią i w pełni wyposażoną kuchnią." },
+    "rodina": { "title": "Domek RODZINNY", "desc": "Duży domek z wieloma sypialniami, idealny dla większych rodzin lub grup przyjaciół." },
+    "javorina": { "title": "Domek JAVORINA", "desc": "Wolnostojący domek z dużym ogrodem i prywatnością, idealny na spokojny wypoczynek." },
+    "premium": { "title": "Domek PREMIUM", "desc": "Luksusowy domek o wysokim standardzie wyposażenia, z jacuzzi i panoramicznym widokiem." },
+    "ubytovna": { "title": "Hostel", "desc": "Proste zakwaterowanie w pokojach ze wspólną łazienką w budynku głównym." }
+  },
+  "cenik": {
+    "title": "Dostępność zakwaterowania",
+    "subtitle": "Wybierz termin w kalendarzu i liczbę osób, aby zobaczyć dostępne domki i ceny.",
+    "persons_label": "Liczba osób:",
+    "all_persons": "Wszystkie",
+    "currency_label": "Waluta:",
+    "calendar_nav_label": "Kalendarz:",
+    "prev_month": "Poprzedni miesiąc",
+    "next_month": "Następny miesiąc",
+    "weekdays": ["Pn", "Wt", "Śr", "Cz", "Pt", "So", "Nd"],
+    "legend_free": "Wolne",
+    "legend_weekend": "Weekend",
+    "legend_holiday": "Święto",
+    "legend_selected": "Wybrany termin",
+    "legend_partial": "Ograniczona pojemność",
+    "legend_occupied": "Zajęte",
+    "your_selection": "Twój wybór:",
+    "nights_count": "{count} {night_word}",
+    "night_singular": "noc",
+    "night_plural_2_4": "noce",
+    "night_plural_5_plus": "nocy",
+    "for_persons_count": "Dla {count} {person_word}",
+      "person_singular": "osoby",
+      "person_plural_2_4": "osób",
+    "person_plural_5_plus": "osób",
+    "capacity_object": "Pojemność obiektu",
+    "basic_price": "Cena podstawowa",
+    "from": "od",
+    "total_for_stay": "Razem za pobyt",
+    "price_note_persons": "Cena zależy od liczby osób.",
+    "select_room": "Wybierz {room_type}",
+    "cancel_selection": "Anuluj wybór",
+    "no_capacity": "Brak wolnych miejsc w wybranym terminie i dla podanej liczby osób. Prosimy spróbować innej daty.",
+    "amenity_wifi": "Tak",
+    "amenity_wifi_title": "Połączenie Wi-Fi",
+    "amenity_shower": "Tak",
+    "amenity_shower_title": "Prywatny prysznic",
+    "amenity_capacity": "Pojemność",
+    "amenity_capacity_title": "Pojemność",
+    "general_price_note": "W przypadku złej pogody istnieje możliwość wypożyczenia grzejnika w cenie 500 CZK/sztuka/noc."
+  },
+  "akce": {
+    "title": "PLANOWANE WYDARZENIA",
+    "subtitle": "Poniżej znajduje się lista wszystkich zaplanowanych wydarzeń w naszym ośrodku.",
+    "no_events": "Obecnie nie planujemy żadnych wydarzeń.",
+    "event_date": "{date}",
+    "items": {
+      "letni_kino": { "title": "Kino letnie pod gwiazdami", "desc": "Przyjdź i ciesz się projekcjami czeskich klasyków pod gołym niebem. Zapewniamy poczęstunek i koce." },
+      "aktualne_u_nas": { "title": "Aktualności u nas", "desc": "Pt-Sb: 11:30 do 20:00, Nd: 11:30 do 18:00. Lato tuż za rogiem! Na jakiś czas rezygnujemy z weekendów tematycznych. Nasz szef kuchni regularnie aktualizuje menu w zakładce RESTAURACJA." }
+    }
+  },
+  "restaurace": {
+    "title": "Uczciwa kuchnia",
+    "menu_title": "Aktualne menu",
+    "show_all": "Pełna lista",
+    "hide": "Ukryj",
+    "restaurant_info_title": "Godziny otwarcia:",
+    "restaurant_info_text": "Czynne: {provoz}",
+    "quote": "Pokochasz nasze burgery i domowe naleśniki.",
+    "spring_hours": "Wiosna: Pt-So: 11:30 do 20:00, Nd: 11:30 do 18:00.",
+    "restaurant_note": "Aktualna oferta na okres 1.5. – 3.5. 2026",
+    "items": {
+      "bramborovy_krem": { "name": "Krem ziemniaczany z domowymi skwarkami", "desc": "Zupa to podstawa!" },
+      "zvihodnene_menu": { "name": "Menu promocyjne", "desc": "Zupa i smażony ser z frytkami i domowym sosem tatarskim." },
+      "grilovana_klobasa": { "name": "Domowa kiełbasa z grilla z chlebem", "desc": "Grillowana kiełbasa paprykowa z gruboziarnistą musztardą, chlebem i świeżą sałatką." },
+      "smazeny_syr": { "name": "Smażony ser z frytkami i domowym sosem tatarskim", "desc": "Złocisty smażony ser z frytkami i naszym domowym sosem tatarskim." },
+      "kureci_steak": { "name": "Stek z kurczaka z grillowanymi warzywami", "desc": "Stek z piersi kurczaka z grillowanymi warzywami" },
+      "texas_steak": { "name": "Stek Texas z frytkami", "desc": "Grillowany stek wieprzowy na długim żebrze, lekko marmurkowaty, podawany ze złocistymi frytkami i domowym sosem tatarskim." },
+      "smazeny_kureci_rizek": { "name": "Smażony sznycel z kurczaka", "desc": "Złocisty sznycel z piersi kurczaka z ziemniakami z pietruszką i cząstką cytryny." },
+      "veprove_sote_kari": { "name": "Soté wieprzowe curry", "desc": "Soté wieprzowe z warzywami curry, ryż jaśminowy" },
+      "kanci_gulas": { "name": "Gulasz z dzika z chlebem i cebulą", "desc": "Gulasz z dzika, wolno gotowany dla uzyskania pełnego smaku, podawany ze świeżym chlebem." },
+      "vegetariansky_salat": { "name": "Sałatka wegetariańska z serem Feta", "desc": "Chrupiąca sałata lodowa ze świeżymi warzywami, dresingiem miodowo-musztardowym i gotowanym jajkiem." },
+      "veprovy_karbenatek": { "name": "Kotlet mielony wieprzowy z ziemniakami", "desc": "Kotlet mielony z wieprzowiny bio, gotowane ziemniaki z pietruszką, sałatka Coleslaw" }
+    }
+  },
+  "vylety": {
+    "title": "Wskazówki na wycieczki",
+    "all": "Wszystkie",
+    "mild": "Łatwa",
+    "medium": "Średnia",
+    "hard": "Trudna",
+    "distance_from_area": "{dist} od ośrodka",
+    "more_info": "Więcej informacji",
+    "walk": "Pieszo",
+    "bike": "Rower",
+    "show_less": "Pokaż mniej",
+    "show_all": "Pokaż wszystkie",
+    "walk_route": "Trasa piesza",
+    "bike_route": "Trasa rowerowa",
+    "qr_walk_alt": "Kod QR trasy pieszej",
+    "qr_bike_alt": "Kod QR trasy rowerowej",
+    "items": {
+      "hrad_kost": { "title": "Zamek Kost", "desc": "Gotycki zamek wzniesiony na piaskowcowym wzniesieniu skalnym, nietypowo jednak nie wysoko nad terenem, ale w dolinie, doskonale ukryty w głębokich lasach." },
+      "udoli_plakanek": { "title": "Dolina Plakánek", "desc": "Zachwycająca romantyczna dolina otoczona borem sosnowym i masywami skalnymi, ogłoszona rezerwatem przyrody w 1990 roku." },
+      "skalni_obydli_barusky": { "title": "Skalne mieszkanie Baruški", "desc": "Skalne mieszkanie znajduje się około 350 metrów od zamku Kost i zostało wykute prawdopodobnie przed 1850 rokiem. Nazwę zawdzięcza ostatnim mieszkankom." },
+      "drabske_svetnicky": { "title": "Drábské světničky", "desc": "Pierwotnie drewniany zamek pełnił funkcję ufortyfikowanej siedziby i punktu strażniczego. Został zbudowany w drugiej tercji XIII wieku na piaskowcowych skałach." },
+      "zricenina_zamku_zasadka": { "title": "Ruiny zamku Zásadka", "desc": "Pozostałości renesansowego zameczku, który powstał w wyniku przebudowy gotyckiego zamku. Stoi nad zbiegiem rzek Izery i Mohelki." },
+      "prihrazske_skaly": { "title": "Skały Przyhrazskie", "desc": "Ścieżka edukacyjna prowadzi przez urozmaicony teren Skał Przyhrazskich. Oferuje piękne widoki i elementy zabawowe pro dzieci." },
+      "stare_hrady_u_prihraz": { "title": "Stare zamki koło Przyhraz", "desc": "Pozostałości skalnego zamku z XIII wieku. Jego pierwotna nazwa nie zachowała się, a dziś jest popularnym celem turystycznym." },
+      "skalni_hrad_klamorna": { "title": "Skalny zamek Klamorna", "desc": "Skalny zamek Klamorna wraz z okolicznymi zamkami tworzył system obronny w Skałach Przyhrazskich już w XIII wieku." },
+      "zricenina_hradu_hynsta": { "title": "Ruiny zamku Hynšta", "desc": "Pozostałości zamku z XIII wieku wykutego w jednym bloku skalnym, który służył również jako dom modlitwy Braci Czeskich." },
+      "zricenina_hradu_valecov": { "title": "Ruiny zamku Valečov", "desc": "Valečov to ruiny średniowiecznego zamku skalnego z początku XIV wieku, dominanta zachodniej części Czeskiego Raju." },
+      "statni_hrad_trosky": { "title": "Zamek państwowy Trosky", "desc": "Bizarne ruiny gotyckiego zamku, symbol Czeskiego Raju. Został zbudowany na dwóch stromych czopach bazaltowych." },
+      "zamek_hruba_skala": { "title": "Zamek Hrubá Skála", "desc": "Romantyczny zamek zbudowany na grupie wież skalnych należy do najczęściej odwiedzanych dominant całego regionu." },
+      "hrad_valdstejn": { "title": "Zamek Valdštejn", "desc": "Najstarszy zamek Czeskiego Raju założony około 1260 roku przez panów z Valdštejna, przodków słynnego Albrechta." },
+      "zamek_svijany": { "title": "Zamek Svijany", "desc": "Pierwotnie renesansowa twierdza przebudowana na zamek. Dziś oferuje ekspozycje o historii regionu i lokalnym browarnictwie." },
+      "zamek_humprecht": { "title": "Zamek Humprecht", "desc": "Barokowy zameczek myśliwski z unikalną wieżą akustyczną, zbudowany dla rodziny Černín jako letnia rezydencja." },
+      "pekarova_brana": { "title": "Brama Pekařa", "desc": "Brama skalna w kształcie łuku gotyckiego wykuta w 1914 roku podczas budowy drogi, nazwana na cześć historyka Pekařa." }
+    }
+  },
+  "sluzby": {
+    "title": "Wrażenia na miarę",
+    "subtitle": "Zorganizujemy dla Ciebie wszystko, od wypożyczenia rowerów po imprezy firmowe i wesela.",
+    "items": {
+      "skoly": { "title": "Zielone szkoły", "desc": "Zapewniamy wyżywienie 5x dziennie, system nawadniania i program z instruktorami." },
+      "svatby": { "title": "Wesela na łonie natury", "desc": "Ceremonia na łące przy lesie, uczta w rustykalnej sali w jednym miejscu." },
+      "akce": { "title": "Imprezy firmowe", "desc": "Teambuilding, szkolenia lub impreza firmowa. Posiadamy salę z projektorem." }
+    }
+  },
+  "rezervace": {
+    "title": "Zarezerwuj swój pobyt",
+    "contact_us": "Skontaktuj się z nami",
+    "your_name": "Twoje imię",
+    "your_email": "Twój E-mail",
+    "arrival": "Przyjazd",
+    "departure": "Wyjazd",
+    "family_recreation": "Rekreacja rodzinna",
+    "school_trip": "Wycieczka szkolna / Obóz",
+    "wedding_event": "Wesele / Impreza firmowa",
+    "message_placeholder": "Masz konkretny termin lub życzenie?",
+    "summary_title": "Podsumowanie rezerwacji",
+    "total_to_pay": "Całkowita kwota do zapłaty",
+    "select_accommodation_alert": "Proszę najpierw wybrać zakwaterowanie w kalendarzu powyżej.",
+    "send_inquiry": "Wyślij zapytanie",
+    "new_inquiry_from": "Nowe zapytanie od",
+    "term": "Termin",
+    "stay_type": "Typ pobytu",
+    "selected_accommodation": "Wybrane zakwaterowanie",
+    "total_price": "Całkowita cena",
+    "client_message": "Wiadomość od klienta",
+    "location": "Srbsko 35, 294 02 Kněžmost",
+    "phone": "+420 123 456 789",
+    "email": "rezerwacja@cejch.cz"
+  },
+  "lightbox": {
+    "prev_image": "Poprzednie zdjęcie",
+    "next_image": "Następne zdjęcie",
+    "close": "Zamknij"
+  },
+  "footer": {
+    "copyright": "© 2026 Ośrodek Rekreacyjny CEJCH. Wszelkie prawa zastrzeżone."
+  },
+  "alerts": {
+    "select_term_first": "Proszę najpierw wybrać termin pobytu w kalendarzu.",
+    "room_occupied": "Przepraszamy, ale {room_type} jest już zajęty w wybranym terminie.",
+    "inquiry_sent_thanks": "Dziękujemy, zapytanie zostało wysłane.",
+    "select_accommodation_first": "Proszę wybrać przynajmniej jedno zakwaterowanie z cennika."
+  }
+}

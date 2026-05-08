@@ -1,22 +1,19 @@
-<section id="akce" class="events-section">
-    <div class="container">
-        <h2 class="section-title">PLÁNOVANÉ AKCE</h2>
-        <p class="section-subtitle">Níže naleznete seznam všech naplánovaných akcí v našem rekreačním areálu.</p>
-        
-        <div class="events-grid" v-if="data.planovane_akce && data.planovane_akce.length > 0">
-            <article class="event-card" v-for="akce in data.planovane_akce" :key="akce.title">
-                <img :src="akce.img" :alt="akce.title" class="event-image">
-                <div class="event-content">
-                    <span class="event-date">{{ akce.date }}</span>
-                    <h3>{{ akce.title }}</h3>
-                    <p>{{ akce.desc }}</p>
-                </div>
-            </article>
-        </div>
+<section id="akce">
+    <h2 class="section-title">{{ t('akce.title') }}</h2>
+    <p class="section-subtitle">{{ t('akce.subtitle') }}</p>
 
-        <div v-else class="empty-state">
-            <span class="material-icons-outlined empty-state-icon">event_busy</span>
-            <p class="empty-state-text">Momentálně neplánujeme žádné akce.</p>
+    <div class="events-grid" v-if="data.planovane_akce.length > 0">
+        <div class="event-card" v-for="event in data.planovane_akce" :key="event.id">
+            <img :src="event.img" :alt="event.title" class="event-image">
+            <div class="event-content">
+                <span class="event-date">{{ t('akce.event_date', { date: event.date }) }}</span>
+                <h3>{{ event.title }}</h3>
+                <p>{{ event.desc }}</p>
+            </div>
         </div>
+    </div>
+    <div v-else class="empty-state">
+        <span class="material-icons-outlined empty-state-icon">event_busy</span>
+        <p class="empty-state-text">{{ t('akce.no_events') }}</p>
     </div>
 </section>

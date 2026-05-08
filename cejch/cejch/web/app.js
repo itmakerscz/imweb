@@ -1,4 +1,4 @@
-const { createApp, ref, reactive, onMounted, computed, watch } = Vue;
+const { createApp, ref, reactive, onMounted, computed, watch, toRaw } = Vue;
 
 const SECTIONS = [
     'nav',
@@ -26,19 +26,54 @@ async function initApp() {
         if (html) appContainer.insertAdjacentHTML('beforeend', html);
     });
 
+    // Automatická detekce jazyka prohlížeče při prvním načtení
+    const browserLang = navigator.language.split('-')[0];
+    const initialLang = localStorage.getItem('preferred_lang') || (['cs', 'en', 'de', 'pl'].includes(browserLang) ? browserLang : 'cs');
+    
+    // Načtení pouze aktivní jazykové verze
+    const i18nData = await fetch(`i18n_${initialLang}.json`).then(res => res.json());
+
     // Inicializace Vue až po načtení všech fragmentů
     createApp({
     setup() {
         const isMenuOpen = ref(false);
+
+        // --- COOKIE HELPERS ---
+        const setLocalStorage = (key, value) => {
+            localStorage.setItem(key, value);
+        };
+
+        const getLocalStorage = (key) => {
+            return localStorage.getItem(key);
+        };
+
+        const setCookie = (name, value, days) => { // Používáno pro preferred_lang, ale přecházíme na localStorage
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            document.cookie = `${name}=${value};expires=${date.toUTCString()};path=/;SameSite=Lax`;
+        };
+        const getCookie = (name) => {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        };
         const showAllTrips = ref(false);
         const showAllGallery = ref(false);
         const showAllMenu = ref(false);
-        const selectedDifficulty = ref('všechny');
+        const selectedDifficulty = ref('all');
         const activeGalleryIndex = ref(0);
         const selectedPersons = ref('all');
         const selectedDateFrom = ref('');
         const selectedDateTo = ref('');
         
+        const currentLang = ref(initialLang);
+        const languages = [
+            { code: 'cs', flag: '🇨🇿', label: 'CZ' },
+            { code: 'en', flag: '🇬🇧', label: 'EN' },
+            { code: 'de', flag: '🇩🇪', label: 'DE' },
+            { code: 'pl', flag: '🇵🇱', label: 'PL' }
+        ];
+        const translations = ref(i18nData);
         const isNavHidden = ref(false);
         // Lightbox state
         const isLightboxOpen = ref(false);
@@ -53,10 +88,30 @@ async function initApp() {
 
         const calendarMonth = ref(new Date().getMonth());
         const calendarYear = ref(new Date().getFullYear());
-        const monthNames = ["Leden", "Únor", "Březen", "Duben", "Květen", "Červen", "Červenec", "Srpen", "Září", "Říjen", "Listopad", "Prosinec"];
         const randomPhotos = ref([]);
         const todayStr = new Date().toISOString().split('T')[0];
         const parsePrice = (p) => parseInt(p.replace(/[^\d]/g, '')) || 0;
+
+        // --- I18N (Internationalization) ---
+        const t = (key, replacements = {}) => {
+            let text = translations.value;
+            const parts = key.split('.');
+            for (const part of parts) {
+                if (text && text[part] !== undefined) {
+                    text = text[part];
+                } else {
+                    console.warn(`Missing translation for key: ${key} in ${currentLang.value}`);
+                    return key; // Fallback to key if not found
+                }
+            }
+            // Replace placeholders like {count}
+            if (typeof text === 'string') {
+                for (const rKey in replacements) {
+                    text = text.replace(`{${rKey}}`, replacements[rKey]);
+                }
+            }
+            return text;
+        };
 
         // Univerzální formátovač ceny podle vybrané měny
         const displayPrice = (val) => {
@@ -70,7 +125,7 @@ async function initApp() {
                 });
             }
             
-            return new Intl.NumberFormat('cs-CZ', {
+            return new Intl.NumberFormat(currentLang.value === 'cs' ? 'cs-CZ' : `${currentLang.value}-${currentLang.value.toUpperCase()}`, { // Např. en-US, de-DE
                 style: 'currency',
                 currency: 'CZK',
                 maximumFractionDigits: 0
@@ -79,7 +134,7 @@ async function initApp() {
 
         const data = reactive({
             ubytovani: [], menu: [], sluzby: [], vylety: [], ceny: [],
-            planovane_akce: [], restaurace_info: {}, restaurace_galerie: []
+            planovane_akce: [], restaurace_info: { provoz: '', poznamka: '' }, restaurace_galerie: []
         });
         const calendar = ref({}); // Kalendář obsazenosti
         const form = ref({ name: '', email: '', type: 'rodina', msg: '', dateFrom: '', dateTo: '', selectedAccommodations: reactive([]), nights: 1 });
@@ -103,6 +158,67 @@ async function initApp() {
         };
 
         // --- DATA LOADING ---
+        const updateDynamicTexts = () => {
+            data.restaurace_info.provoz = t('restaurace.restaurant_info_text', { provoz: t('restaurace.spring_hours') });
+            data.restaurace_info.poznamka = t('restaurace.restaurant_note');
+            data.restaurace_info.quote = t('restaurace.quote');
+
+            // Lokalizace ubytování
+            if (data.ubytovani) {
+                data.ubytovani.forEach(item => {
+                    const translation = t(`rooms.${item.id}`);
+                    if (typeof translation === 'object') {
+                        item.title = translation.title;
+                        item.desc = translation.desc;
+                    }
+                });
+            }
+
+            // Lokalizace jídelního lístku
+            if (data.menu) {
+                data.menu.forEach(item => {
+                    const translation = t(`restaurace.items.${item.id}`);
+                    if (typeof translation === 'object') {
+                        item.name = translation.name;
+                        item.desc = translation.desc;
+                    }
+                });
+            }
+
+            // Lokalizace výletů
+            if (data.vylety) {
+                data.vylety.forEach(item => {
+                    const translation = t(`vylety.items.${item.id}`);
+                    if (typeof translation === 'object') {
+                        item.title = translation.title;
+                        item.desc = translation.desc;
+                    }
+                });
+            }
+
+            // Lokalizace akcí
+            if (data.planovane_akce) {
+                data.planovane_akce.forEach(item => {
+                    const translation = t(`akce.items.${item.id}`);
+                    if (typeof translation === 'object') {
+                        item.title = translation.title;
+                        item.desc = translation.desc;
+                    }
+                });
+            }
+
+            // Lokalizace služeb
+            if (data.sluzby) {
+                data.sluzby.forEach(item => {
+                    const translation = t(`sluzby.items.${item.id}`);
+                    if (typeof translation === 'object') {
+                        item.title = translation.title;
+                        item.desc = translation.desc;
+                    }
+                });
+            }
+        };
+
         const loadData = async () => {
             try {
                 const fetchJson = async (url) => {
@@ -118,13 +234,15 @@ async function initApp() {
                 
                 if (jsonData) {
                     Object.assign(data, jsonData);
-                    if (data.vylety) {
-                        data.vylety = data.vylety.map(t => ({ ...t, showQR: false }));
-                    }
+                    // Initialize showQR for vylety and add IDs for akce
+                    if (data.vylety) data.vylety = data.vylety.map(t => ({ ...t, showQR: false }));
                 }
 
                 if (calData) calendar.value = calData;
-                if (akceData) data.planovane_akce = akceData;
+                if (akceData) data.planovane_akce = akceData; // Přiřadíme data akcí s jejich původními ID (letni_kino, atd.)
+
+                // Lokalizujeme texty až poté, co jsou všechna data (ubytování, menu, akce) načtena
+                updateDynamicTexts();
 
                 if (data.restaurace_galerie?.length > 0) {
                     randomPhotos.value = [...data.restaurace_galerie].sort(() => 0.5 - Math.random()).slice(0, 3);
@@ -133,7 +251,12 @@ async function initApp() {
             } catch (err) { console.error("Chyba při načítání dat:", err); }
         };
 
-        const filteredTrips = computed(() => selectedDifficulty.value === 'všechny' ? data.vylety : data.vylety.filter(t => t.difficulty === selectedDifficulty.value));
+        const filteredTrips = computed(() => {
+            if (!data.vylety) return [];
+            return selectedDifficulty.value === 'all' 
+                ? data.vylety 
+                : data.vylety.filter(t => t.difficulty === selectedDifficulty.value);
+        });
         const displayTrips = computed(() => showAllTrips.value ? filteredTrips.value : [...filteredTrips.value].sort(() => 0.5 - Math.random()).slice(0, 3));
 
         // Efektivní index obsazenosti pro bleskové vyhledávání O(1)
@@ -190,7 +313,7 @@ async function initApp() {
             const end = new Date(y2, m2 - 1, d2);
             
             const nights = Math.ceil((end - start) / 86400000);
-            if (nights <= 0) return 0;
+            if (nights <= 0 || !row) return 0;
 
             const persons = personCount === 'all' ? "1" : String(personCount);
             const basePrice = parsePrice(row.prices[persons] || row.prices["1"]);
@@ -212,13 +335,12 @@ async function initApp() {
 
         const getStayPrice = (row) => {
             const total = calculateTotalPrice(row, selectedDateFrom.value, selectedDateTo.value, selectedPersons.value);
-            return total > 0 ? displayPrice(total) : null;
+            return total > 0 ? displayPrice(total) : displayPrice(0);
         };
 
-        const getRoomImage = (typ) => {
-            // Najdeme odpovídající objekt ubytování z data.ubytovani
-            // Použijeme tolerantu shodu (např. "Chatka JUNIOR" najde i "Chatka JUNIOR M")
-            const room = data.ubytovani.find(u => typ.toLowerCase().includes(u.title.toLowerCase()));
+        const getRoomImage = (roomId) => {
+            // Najdeme odpovídající objekt ubytování přímo podle ID (např. 'junior', 'premium')
+            const room = data.ubytovani.find(u => u.id === roomId);
             // Vrátíme hlavní obrázek, pokud existuje, jinak použijeme fallback
             return room ? room.img : 'https://cejch.cz/obr/chata-rodina/chata-rodina-2.jpg'; // Fallback
         };
@@ -246,7 +368,7 @@ async function initApp() {
         const selectedAccommodationsSummary = computed(() => {
             return form.value.selectedAccommodations.map(typ => {
                 const row = data.ceny.find(c => c.typ === typ);
-                const price = calculateTotalPrice(row, selectedDateFrom.value, selectedDateTo.value, selectedPersons.value);
+                const price = calculateTotalPrice(row, selectedDateFrom.value, selectedDateTo.value, selectedPersons.value); // Použijeme selectedDateFrom/To
                 return { typ, price: displayPrice(price) };
             });
         });
@@ -290,20 +412,27 @@ async function initApp() {
                 view.push({
                     month: m,
                     year: y,
-                    name: monthNames[m],
+                    name: t('common.month_names')[m],
                     days: generateMonthDays(m, y)
                 });
             }
             return view;
         });
 
-        const calendarDays = computed(() => generateMonthDays(calendarMonth.value, calendarYear.value));
-
         // Den je obsazen pouze pokud jsou VŠECHNY typy ubytování v areálu plné
         const isDateOccupied = (dateStr) => {
             const count = occupiedMap.value.get(dateStr) || 0;
             const totalCapacity = data.ceny.reduce((acc, curr) => acc + (curr.pocet || 1), 0);
             return totalCapacity > 0 && count >= totalCapacity;
+        };
+        
+        // Funkce pro změnu jazyka
+        const setLang = async (lang) => {
+            const newData = await fetch(`i18n_${lang}.json`).then(res => res.json());
+            translations.value = newData;
+            currentLang.value = lang;
+            updateDynamicTexts();
+            setLocalStorage('preferred_lang', lang); // Uložit volbu do localStorage
         };
 
         const isDatePartiallyOccupied = (dateStr) => {
@@ -338,6 +467,39 @@ async function initApp() {
             else if (calendarMonth.value > 11) { calendarMonth.value = 0; calendarYear.value++; }
         };
 
+        // Pomocné funkce pro pluralizaci (pro češtinu)
+        const pluralizeNights = (count) => {
+            if (count === 1) return t('cenik.night_singular');
+            if (currentLang.value === 'cs') {
+                if (count === 1) return t('cenik.night_singular');
+                if (count >= 2 && count <= 4) return t('cenik.night_plural_2_4');
+                return t('cenik.night_plural_5_plus');
+            }
+            if (currentLang.value === 'pl') {
+                const v = count % 10;
+                const f = count % 100;
+                if (v >= 2 && v <= 4 && (f < 10 || f > 20)) return t('cenik.night_plural_2_4');
+                return t('cenik.night_plural_5_plus');
+            }
+            return t('cenik.night_plural_5_plus'); // Fallback pro ostatní jazyky
+        };
+        const pluralizePersons = (count) => {
+            if (count === 1) return t('cenik.person_singular');
+            if (currentLang.value === 'cs') {
+                if (count === 1) return t('cenik.person_singular');
+                if (count >= 2 && count <= 4) return t('cenik.person_plural_2_4');
+                return t('cenik.person_plural_5_plus');
+            }
+            if (currentLang.value === 'pl') {
+                const v = count % 10;
+                const f = count % 100;
+                if (v >= 2 && v <= 4 && (f < 10 || f > 20)) return t('cenik.person_plural_2_4');
+                return t('cenik.person_plural_5_plus');
+            }
+            return t('cenik.person_plural_5_plus'); // Fallback pro ostatní jazyky
+        };
+
+
         const totalPrice = computed(() => {
             if (!form.value.selectedAccommodations.length) return displayPrice(0);
             let total = 0;
@@ -351,7 +513,7 @@ async function initApp() {
         // Přidá/odebere chatku do výběru pro rezervaci
         const toggleAccommodationSelection = (typ) => {
             if (!selectedDateFrom.value || !selectedDateTo.value) {
-                alert("Nejprve prosím vyberte termín pobytu v kalendáři.");
+                alert(t('alerts.select_term_first'));
                 return;
             }
 
@@ -364,7 +526,7 @@ async function initApp() {
                 if (isAvailable(typ)) {
                     form.value.selectedAccommodations.push(typ);
                 } else {
-                    alert(`Omlouváme se, ale ${typ} je ve vybraném termínu již obsazen.`);
+                    alert(t('alerts.room_occupied', { room_type: typ }));
                 }
             }
         };
@@ -413,7 +575,7 @@ async function initApp() {
         // --- LIGHTBOX LOGIC ---
         const openLightbox = (room) => {
             lightboxImages.value = room.gallery || [room.img];
-            lightboxTitle.value = room.title;
+            lightboxTitle.value = t('rooms.' + room.id + '.title'); // Použít lokalizovaný název
             activeLightboxIndex.value = 0;
             isLightboxOpen.value = true;
             document.body.classList.add('no-scroll');
@@ -500,7 +662,7 @@ async function initApp() {
         const submitForm = () => {
             // Automatické ověření před odesláním
             if (form.value.selectedAccommodations.length === 0) {
-                alert("Prosím vyberte alespoň jedno ubytování v ceníku.");
+                alert(t('alerts.select_accommodation_first'));
                 return;
             }
 
@@ -508,7 +670,7 @@ async function initApp() {
             form.value.selectedAccommodations.forEach(acc => {
                 if (!isAvailable(acc)) {
                     isStillFree = false;
-                    alert(`Omlouváme se, ale ${acc} byl právě obsazen.`);
+                    alert(t('alerts.room_occupied', { room_type: acc }));
                 }
             });
 
@@ -518,25 +680,28 @@ async function initApp() {
 
             // Příprava souhrnu ubytování pro zprávu
             const accSummary = selectedAccommodationsSummary.value
-                .map(item => `- ${item.typ} (${item.price})`)
+                .map(item => `- ${t('rooms.' + item.typ + '.title')} (${item.price})`) // Lokalizovaný název
                 .join('\n');
+
+            const arrivalDate = new Date(selectedDateFrom.value).toLocaleDateString(currentLang.value);
+            const departureDate = new Date(selectedDateTo.value).toLocaleDateString(currentLang.value);
 
             // Sestavení kompletního těla zprávy pro odeslání
             const fullMessage = `
-Nová poptávka od: ${form.value.name} (${form.value.email})
-Termín: ${selectedDateFrom.value} – ${selectedDateTo.value} (${nightsCount.value} nocí)
-Typ pobytu: ${form.value.type}
+${t('rezervace.new_inquiry_from')}: ${form.value.name} (${form.value.email})
+${t('rezervace.term')}: ${arrivalDate} – ${departureDate} (${t('cenik.nights_count', { count: nightsCount.value, night_word: pluralizeNights(nightsCount.value) })})
+${t('rezervace.stay_type')}: ${form.value.type}
 
-Vybrané ubytování:
+${t('rezervace.selected_accommodation')}:
 ${accSummary}
 
-Celková cena: ${totalPrice.value}
+${t('rezervace.total_price')}: ${totalPrice.value}
 
-Zpráva od klienta: ${form.value.msg}
+${t('rezervace.client_message')}: ${form.value.msg}
             `.trim();
 
             console.log("Odesílaná data poptávky:", fullMessage);
-            alert(`Děkujeme, poptávka odeslána.\n\nSouhrn:\n${accSummary}\n\nCelkem: ${totalPrice.value}`);
+            alert(t('alerts.inquiry_sent_thanks') + `\n\n${t('rezervace.summary_title')}:\n${accSummary}\n\n${t('rezervace.total_to_pay')}: ${totalPrice.value}`);
             
             form.value = { name: '', email: '', type: 'rodina', msg: '', dateFrom: '', dateTo: '', selectedAccommodations: [], nights: 1 };
         };
@@ -547,11 +712,12 @@ Zpráva od klienta: ${form.value.msg}
             selectCalendarDay, isDateSelected, isDateInRange, isPastDay, isPublicHoliday, 
             isDatePartiallyOccupied, totalPrice, nightsCount, getStayPrice, getRoomImage, 
             filteredTrips, displayTrips, filteredPrices, randomPhotos, data, form, scrollTo, 
-            submitForm, calendar, calendarMonth, calendarYear, monthNames, calendarDays, 
-            isDateOccupied, isToday, changeMonth, occupancySummary, activeGalleryIndex, 
-            handleGalleryScroll, scrollGallery, scrollToImage, startAutoplay, stopAutoplay, 
-            currency, displayPrice, activeSection, isNavHidden, multiMonthView, 
-            calendarTransition, toggleAccommodationSelection, selectedAccommodationsSummary,
+            submitForm, calendar, calendarMonth, calendarYear, calendarDays: computed(() => generateMonthDays(calendarMonth.value, calendarYear.value)), // calendarDays je nyní computed property
+            isDateOccupied, isToday, changeMonth, occupancySummary, activeGalleryIndex,
+            handleGalleryScroll, scrollGallery, scrollToImage, startAutoplay, stopAutoplay,
+            currency, displayPrice, activeSection, isNavHidden, multiMonthView, currentLang, setLang,
+            calendarTransition, toggleAccommodationSelection, selectedAccommodationsSummary, t,
+            pluralizeNights, pluralizePersons, languages,
             isLightboxOpen, lightboxImages, activeLightboxIndex, lightboxTitle,
             openLightbox, closeLightbox, nextLightboxImage, prevLightboxImage,
             handleTouchStart, handleTouchEnd
