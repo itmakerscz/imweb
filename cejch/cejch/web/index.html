@@ -15,6 +15,20 @@
 
 <div id="app">
     <!-- Sekce budou načteny sem pomocí app.js -->
+    
+    <!-- Global Lightbox -->
+    <div v-if="isLightboxOpen" class="lightbox-overlay" @click.self="closeLightbox" @touchstart="handleTouchStart" @touchend="handleTouchEnd">
+        <button class="lightbox-close" @click="closeLightbox" aria-label="Zavřít">&times;</button>
+        <button class="lightbox-nav prev" @click="prevLightboxImage" v-if="lightboxImages.length > 1" aria-label="Předchozí">&lsaquo;</button>
+        <div class="lightbox-content">
+            <img :src="lightboxImages[activeLightboxIndex]" :alt="lightboxTitle">
+            <div class="lightbox-caption">
+                <h3>{{ lightboxTitle }}</h3>
+                <span>{{ activeLightboxIndex + 1 }} / {{ lightboxImages.length }}</span>
+            </div>
+        </div>
+        <button class="lightbox-nav next" @click="nextLightboxImage" v-if="lightboxImages.length > 1" aria-label="Další">&rsaquo;</button>
+    </div>
 </div>
 
 <script src="app.js" defer></script>

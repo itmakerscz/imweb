@@ -67,7 +67,7 @@
 
             <div v-if="filteredPrices.length > 0">
                 <div class="grid-3">
-                    <article class="card" v-for="row in filteredPrices" :key="row.typ">
+                    <article class="card" v-for="row in filteredPrices" :key="row.typ" :class="{ 'selected': form.selectedAccommodations.includes(row.typ) }">
                         <span v-if="row.typ === 'Chatka JUNIOR'" class="card-tag">Nejoblíbenější</span>
                         <span v-if="row.typ === 'Chata PREMIUM'" class="card-tag">Luxusní volba</span>
                         <img :src="getRoomImage(row.typ)" :alt="row.typ">
@@ -102,8 +102,8 @@
                             </div>
                             <p class="price-note" v-if="selectedPersons === 'all'">Cena se odvíjí od počtu osob.</p>
                             
-                            <button class="primary btn-booking" @click="selectAccommodation(row.typ)">
-                                Vybrat {{ row.typ }}
+                            <button :class="form.selectedAccommodations.includes(row.typ) ? 'outline' : 'primary'" class="btn-booking" @click="toggleAccommodationSelection(row.typ)">
+                                {{ form.selectedAccommodations.includes(row.typ) ? 'Zrušit výběr' : 'Vybrat ' + row.typ }}
                             </button>
                         </div>
                     </article>

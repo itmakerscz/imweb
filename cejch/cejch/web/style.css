@@ -85,6 +85,10 @@ section { padding: 5rem 10%; scroll-margin-top: 70px; }
 
 .card { background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: var(--transition); position: relative; height: 100%; display: flex; flex-direction: column; }
 .card:hover { transform: translateY(-10px); }
+.card.selected { 
+    border: 2px solid var(--secondary); 
+    box-shadow: 0 0 20px rgba(217, 119, 6, 0.2); 
+}
 .card img { width: 100%; height: 220px; object-fit: cover; }
 .card-content { padding: 1.8rem; flex-grow: 1; display: flex; flex-direction: column; }
 .card-tag { position: absolute; top: 1rem; right: 1rem; background: var(--secondary); color: white; padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.85rem; font-weight: bold; z-index: 10; }
@@ -198,6 +202,24 @@ section { padding: 5rem 10%; scroll-margin-top: 70px; }
 }
 .calendar-day.today { border: 2px solid var(--secondary); color: var(--secondary); }
 
+.calendar-legend { 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 2rem; 
+    font-size: 0.95rem; 
+    padding-top: 1.5rem;
+    border-top: 1px dashed #eee;
+}
+.legend-item { display: flex; align-items: center; gap: 10px; }
+.legend-box { width: 26px; height: 26px; border-radius: 8px; flex-shrink: 0; border: 1px solid rgba(0,0,0,0.1); }
+
+.legend-box-free { background: var(--bg-light); border: 1px solid #ddd; }
+.legend-box-weekend { background: rgba(217, 119, 6, 0.1); border: 1px solid var(--secondary); }
+.legend-box-holiday-dot { color: #d32f2f; font-weight: bold; font-size: 2.2rem; line-height: 0.8; width: 26px; text-align: center; }
+.legend-box-selected { background: var(--secondary); }
+
 /* --- CURRENCY TOGGLE --- */
 .currency-toggle {
     display: flex;
@@ -301,6 +323,116 @@ section { padding: 5rem 10%; scroll-margin-top: 70px; }
 }
 .results-summary h4 { margin-bottom: 5px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
 .results-summary p { font-size: 1.1rem; color: var(--text-dark); margin: 0; }
+
+/* --- BOOKING SUMMARY (INVOICE STYLE) --- */
+.booking-summary {
+    background: #fcfcfc;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+}
+.booking-summary h3 {
+    font-size: 1.1rem;
+    color: var(--primary);
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 2px solid var(--bg-light);
+}
+.booking-summary ul { margin-bottom: 0; }
+.booking-summary li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.6rem 0;
+    border-bottom: 1px dashed #e0e0e0;
+    font-size: 0.95rem;
+}
+.booking-summary li:last-child { border-bottom: none; }
+.booking-summary .total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 2px solid var(--primary);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+.booking-summary .total-label { color: var(--primary); }
+.booking-summary .total-amount { color: var(--secondary); }
+
+/* --- CONTACT & FORM ENHANCEMENTS --- */
+.contact-sidebar { display: flex; flex-direction: column; gap: 2rem; }
+.contact-methods h3 { margin-bottom: 1.5rem; color: var(--primary); }
+.contact-item { 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+    margin-bottom: 1rem; 
+    transition: var(--transition);
+    color: var(--text-dark);
+}
+.contact-item:hover { color: var(--secondary); }
+.contact-item .material-icons-outlined { color: var(--secondary); }
+
+.info-box { 
+    background: var(--white); 
+    padding: 1.5rem; 
+    border-radius: 15px; 
+    border-left: 5px solid var(--secondary);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    display: flex;
+    gap: 12px;
+}
+
+.input-with-label { display: flex; flex-direction: column; gap: 5px; }
+.input-with-label label { font-size: 0.8rem; font-weight: 700; color: #888; margin-left: 5px; }
+
+.form-alert { 
+    display: flex; align-items: center; gap: 10px; 
+    padding: 1rem; background: #fff8e1; color: #856404; 
+    border-radius: 12px; font-size: 0.9rem; margin-bottom: 1rem;
+}
+
+/* --- LIGHTBOX --- */
+.clickable-image { cursor: pointer; }
+.lightbox-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 2000;
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease;
+}
+.lightbox-content {
+    max-width: 90%; max-height: 80vh;
+    display: flex; flex-direction: column; align-items: center;
+}
+.lightbox-content img {
+    max-width: 100%; max-height: 75vh;
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    object-fit: contain;
+}
+.lightbox-caption { color: white; margin-top: 1.5rem; text-align: center; }
+.lightbox-caption h3 { font-size: 1.2rem; margin-bottom: 5px; }
+.lightbox-close {
+    position: absolute; top: 20px; right: 30px;
+    font-size: 3rem; color: white; background: none; border: none; cursor: pointer;
+    opacity: 0.7; transition: var(--transition);
+}
+.lightbox-close:hover { opacity: 1; transform: rotate(90deg); }
+.lightbox-nav {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    font-size: 4rem; color: white; background: none; border: none; cursor: pointer;
+    opacity: 0.5; transition: var(--transition); padding: 20px;
+}
+.lightbox-nav:hover { opacity: 1; color: var(--secondary); }
+.lightbox-nav.prev { left: 20px; }
+.lightbox-nav.next { right: 20px; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 .price-card .card-content { padding: 1.2rem; }
 .price-card h3 { font-size: 1.3rem; margin-bottom: 5px; }
@@ -426,7 +558,7 @@ footer { background: var(--primary); color: white; text-align: center; padding: 
 @media (min-width: 1200px) {
     /* Pro zachování 3 výsledků vedle sebe jako u výletů přejdeme na vertikální stack */
     .booking-layout { flex-direction: column; }
-    .booking-layout .calendar-container { max-width: auto; width: 100%; margin: 0 auto 3rem; }
+    .booking-layout .calendar-container { max-width: none; width: 100%; margin: 0 auto 3rem; }
     .booking-results { width: 100%; }
     .booking-results .grid-3 { grid-template-columns: repeat(3, 1fr); }
 }
@@ -491,5 +623,24 @@ footer { background: var(--primary); color: white; text-align: center; padding: 
     .calendar-header .custom-select { width: 100%; }
     .calendar-grid { gap: 4px; }
     .calendar-day { font-size: 0.8rem; }
-    .calendar-legend { gap: 10px 15px; justify-content: center; }
+    .month-title { text-align: center; color: var(--primary); font-weight: 700; margin-bottom: 1.2rem; font-size: 1.1rem; }
+
+.calendar-legend { 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 2rem; 
+    font-size: 0.95rem; 
+    padding-top: 1.5rem;
+    border-top: 1px dashed #eee;
+}
+.legend-item { display: flex; align-items: center; gap: 10px; }
+.legend-box { width: 26px; height: 26px; border-radius: 8px; flex-shrink: 0; border: 1px solid rgba(0,0,0,0.1); }
+
+.legend-box-free { background: var(--bg-light); border: 1px solid #ddd; }
+.legend-box-weekend { background: rgba(217, 119, 6, 0.1); border: 1px solid var(--secondary); }
+.legend-box-holiday-dot { color: #d32f2f; font-weight: bold; font-size: 2.2rem; line-height: 0.8; width: 26px; text-align: center; }
+.legend-box-selected { background: var(--secondary); }
+
 }

@@ -1,41 +1,76 @@
 <section id="rezervace">
     <h2 class="section-title">Rezervujte si svůj pobyt</h2>
     <div class="contact-container">
-        <div style="display: flex; flex-direction: column; gap: 2rem;">
-            <div>
-                <h3 style="margin-bottom: 1rem;">Kontakt</h3>
-                <p style="margin-bottom: 0.5rem;">
-                    <a href="https://mapy.cz/turisticka?source=firm&id=12741218" target="_blank" style="text-decoration: none; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
-                        <span class="material-icons-outlined">location_on</span> Srbsko 35, 294 02 Kněžmost
-                    </a>
-                </p>
-                <p style="margin-bottom: 0.5rem;"><span class="material-icons-outlined">phone</span> +420 123 456 789</p>
-                <p><span class="material-icons-outlined">email</span> rezervace@cejch.cz</p>
+        <!-- Kontaktní informace vlevo -->
+        <aside class="contact-sidebar">
+            <div class="contact-methods">
+                <h3>Kontaktujte nás</h3>
+                <a href="https://mapy.cz/turisticka?source=firm&id=12741218" target="_blank" class="contact-item">
+                    <span class="material-icons-outlined">location_on</span>
+                    <span>Srbsko 35, 294 02 Kněžmost</span>
+                </a>
+                <div class="contact-item">
+                    <span class="material-icons-outlined">phone</span>
+                    <span>+420 123 456 789</span>
+                </div>
+                <div class="contact-item">
+                    <span class="material-icons-outlined">email</span>
+                    <span>rezervace@cejch.cz</span>
+                </div>
             </div>
-            <div style="background: var(--white); padding: 1.5rem; border-radius: 15px; border-left: 5px solid var(--secondary);">
+
+            <div class="info-box">
+                <span class="material-icons-outlined text-secondary">restaurant</span>
                 <p><strong>Provoz restaurace:</strong><br>{{ data.restaurace_info.provoz }}</p>
             </div>
-        </div>
+        </aside>
+
+        <!-- Rezervační formulář vpravo -->
         <form @submit.prevent="submitForm">
             <div class="form-row">
                 <input type="text" v-model="form.name" placeholder="Vaše jméno" required>
                 <input type="email" v-model="form.email" placeholder="Váš E-mail" required>
             </div>
+            
             <div class="form-row">
-                <input type="date" v-model="form.dateFrom" title="Datum příjezdu" :min="new Date().toISOString().split('T')[0]">
-                <input type="date" v-model="form.dateTo" title="Datum odjezdu" :min="form.dateFrom || new Date().toISOString().split('T')[0]">
-                <input type="text" v-model="form.accommodation" placeholder="Vybrané ubytování" readonly style="background: #f0f0f0; cursor: not-allowed;">
+                <div class="input-with-label">
+                    <label>Příjezd</label>
+                    <input type="date" v-model="form.dateFrom" :min="new Date().toISOString().split('T')[0]">
+                </div>
+                <div class="input-with-label">
+                    <label>Odjezd</label>
+                    <input type="date" v-model="form.dateTo" :min="form.dateFrom || new Date().toISOString().split('T')[0]">
+                </div>
             </div>
-            <div class="form-row">
-                <input type="number" v-model.number="form.nights" placeholder="Počet nocí" min="1" required>
-                <input type="text" :value="totalPrice" placeholder="Celková cena" readonly style="background: #f0f0f0; cursor: not-allowed;">
-            </div>
+
             <select v-model="form.type">
                 <option value="rodina">Rodinná rekreace</option>
                 <option value="skola">Škola v přírodě / Tábor</option>
                 <option value="akce">Svatba / Firemní akce</option>
             </select>
+
             <textarea v-model="form.msg" rows="4" placeholder="Máte konkrétní termín nebo přání?"></textarea>
+
+            <!-- Souhrn vybraných položek (Faktura) -->
+            <div v-if="selectedAccommodationsSummary.length > 0" class="booking-summary">
+                <h3>Souhrn rezervace ({{ nightsCount }} {{ nightsCount == 1 ? 'noc' : (nightsCount < 5 ? 'noci' : 'nocí') }})</h3>
+                <ul>
+                    <li v-for="item in selectedAccommodationsSummary" :key="item.typ">
+                        <span>{{ item.typ }}</span>
+                        <strong>{{ item.price }}</strong>
+                    </li>
+                </ul>
+                <div class="total-row">
+                    <span class="total-label">Celková cena</span>
+                    <span class="total-amount">{{ totalPrice }}</span>
+                </div>
+            </div>
+
+            <div v-else class="form-alert">
+                <span class="material-icons-outlined">info</span>
+                <span>Před odesláním si prosím vyberte ubytování v kalendáři výše.</span>
+            </div>
+
             <button type="submit" class="primary">Odeslat poptávku</button>
         </form>
     </div>

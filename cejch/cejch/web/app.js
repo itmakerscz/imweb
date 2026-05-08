@@ -40,6 +40,12 @@ async function initApp() {
         const selectedDateTo = ref('');
         
         const isNavHidden = ref(false);
+        // Lightbox state
+        const isLightboxOpen = ref(false);
+        const lightboxImages = ref([]);
+        const activeLightboxIndex = ref(0);
+        const lightboxTitle = ref('');
+
         const activeSection = ref('hero');
         const calendarTransition = ref('slide-next');
         const currency = ref('CZK');
@@ -75,8 +81,8 @@ async function initApp() {
             ubytovani: [], menu: [], sluzby: [], vylety: [], ceny: [],
             planovane_akce: [], restaurace_info: {}, restaurace_galerie: []
         });
-        const calendar = ref({});
-        const form = ref({ name: '', email: '', type: 'rodina', msg: '', dateFrom: '', dateTo: '', accommodation: '', nights: 1 });
+        const calendar = ref({}); // Kalendář obsazenosti
+        const form = ref({ name: '', email: '', type: 'rodina', msg: '', dateFrom: '', dateTo: '', selectedAccommodations: reactive([]), nights: 1 });
 
         // --- GALLERY AUTOPLAY ---
         let autoplayTimer = null;
@@ -138,7 +144,7 @@ async function initApp() {
                 periods.forEach(p => {
                     let curr = new Date(p.from);
                     const end = new Date(p.to);
-                    while (curr <= end) {
+                    while (curr < end) {
                         const dStr = curr.toISOString().split('T')[0];
                         map.set(dStr, (map.get(dStr) || 0) + 1);
                         curr.setDate(curr.getDate() + 1);
@@ -210,16 +216,40 @@ async function initApp() {
         };
 
         const getRoomImage = (typ) => {
-            const room = data.ubytovani.find(u => typ.toLowerCase().includes(u.title.toLowerCase().split(' ')[0]));
-            return room ? room.img : 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=500&q=80';
+            // Najdeme odpovídající objekt ubytování z data.ubytovani
+            // Použijeme tolerantu shodu (např. "Chatka JUNIOR" najde i "Chatka JUNIOR M")
+            const room = data.ubytovani.find(u => typ.toLowerCase().includes(u.title.toLowerCase()));
+            // Vrátíme hlavní obrázek, pokud existuje, jinak použijeme fallback
+            return room ? room.img : 'https://cejch.cz/obr/chata-rodina/chata-rodina-2.jpg'; // Fallback
         };
 
         const isAvailable = (typ) => {
-            if (!selectedDateFrom.value || !selectedDateTo.value || !calendar.value[typ]) return true;
-            const s1 = selectedDateFrom.value;
-            const e1 = selectedDateTo.value;
-            return !calendar.value[typ].some(p => p.from <= e1 && p.to >= s1);
+            if (!selectedDateFrom.value || !selectedDateTo.value) return true;
+            
+            const unitData = data.ceny.find(c => c.typ === typ);
+            const totalUnits = unitData?.pocet || 1;
+            const bookings = calendar.value[typ] || [];
+
+            let current = new Date(selectedDateFrom.value);
+            const checkout = new Date(selectedDateTo.value);
+
+            while (current < checkout) {
+                const dStr = current.toISOString().split('T')[0];
+                const occupiedOnThisDay = bookings.filter(b => dStr >= b.from && dStr < b.to).length;
+                
+                if (occupiedOnThisDay >= totalUnits) return false;
+                current.setDate(current.getDate() + 1);
+            }
+            return true;
         };
+
+        const selectedAccommodationsSummary = computed(() => {
+            return form.value.selectedAccommodations.map(typ => {
+                const row = data.ceny.find(c => c.typ === typ);
+                const price = calculateTotalPrice(row, selectedDateFrom.value, selectedDateTo.value, selectedPersons.value);
+                return { typ, price: displayPrice(price) };
+            });
+        });
 
         // Pomocná funkce pro generování dnů konkrétního měsíce
         const generateMonthDays = (month, year) => {
@@ -272,12 +302,14 @@ async function initApp() {
         // Den je obsazen pouze pokud jsou VŠECHNY typy ubytování v areálu plné
         const isDateOccupied = (dateStr) => {
             const count = occupiedMap.value.get(dateStr) || 0;
-            return data.ceny.length > 0 && count >= data.ceny.length;
+            const totalCapacity = data.ceny.reduce((acc, curr) => acc + (curr.pocet || 1), 0);
+            return totalCapacity > 0 && count >= totalCapacity;
         };
 
         const isDatePartiallyOccupied = (dateStr) => {
             const count = occupiedMap.value.get(dateStr) || 0;
-            return count > 0 && count < data.ceny.length;
+            const totalCapacity = data.ceny.reduce((acc, curr) => acc + (curr.pocet || 1), 0);
+            return count > 0 && count < totalCapacity;
         };
 
         const isPublicHoliday = computed(() => (dateStr) => {
@@ -307,25 +339,34 @@ async function initApp() {
         };
 
         const totalPrice = computed(() => {
-            const acc = data.ceny.find(c => c.typ === form.value.accommodation);
-            const total = calculateTotalPrice(acc, form.value.dateFrom, form.value.dateTo, selectedPersons.value);
+            if (!form.value.selectedAccommodations.length) return displayPrice(0);
+            let total = 0;
+            form.value.selectedAccommodations.forEach(typ => {
+                const acc = data.ceny.find(c => c.typ === typ);
+                total += calculateTotalPrice(acc, selectedDateFrom.value, selectedDateTo.value, selectedPersons.value);
+            });
             return total > 0 ? displayPrice(total) : displayPrice(0);
         });
 
-        const selectAccommodation = (typ) => {
-            // Okamžitá kontrola dostupnosti, pokud jsou již vybrána data v kalendáři
-            if (selectedDateFrom.value && selectedDateTo.value && !isAvailable(typ)) {
-                alert(`Omlouváme se, ale ${typ} je v termínu od ${selectedDateFrom.value} do ${selectedDateTo.value} již obsazen.`);
+        // Přidá/odebere chatku do výběru pro rezervaci
+        const toggleAccommodationSelection = (typ) => {
+            if (!selectedDateFrom.value || !selectedDateTo.value) {
+                alert("Nejprve prosím vyberte termín pobytu v kalendáři.");
                 return;
             }
 
-            form.value.accommodation = typ;
-            if (selectedDateFrom.value) form.value.dateFrom = selectedDateFrom.value;
-            if (selectedDateTo.value) {
-                form.value.dateTo = selectedDateTo.value;
-                form.value.nights = Math.ceil((new Date(selectedDateTo.value) - new Date(selectedDateFrom.value)) / 86400000) || 1;
+            const index = form.value.selectedAccommodations.indexOf(typ);
+            if (index > -1) {
+                // Odebrat, pokud už je vybrána
+                form.value.selectedAccommodations.splice(index, 1);
+            } else {
+                // Přidat, pokud není vybrána a je dostupná
+                if (isAvailable(typ)) {
+                    form.value.selectedAccommodations.push(typ);
+                } else {
+                    alert(`Omlouváme se, ale ${typ} je ve vybraném termínu již obsazen.`);
+                }
             }
-            scrollTo('rezervace');
         };
 
         const selectCalendarDay = (date) => {
@@ -369,6 +410,41 @@ async function initApp() {
             el.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
         };
 
+        // --- LIGHTBOX LOGIC ---
+        const openLightbox = (room) => {
+            lightboxImages.value = room.gallery || [room.img];
+            lightboxTitle.value = room.title;
+            activeLightboxIndex.value = 0;
+            isLightboxOpen.value = true;
+            document.body.classList.add('no-scroll');
+        };
+
+        const closeLightbox = () => {
+            isLightboxOpen.value = false;
+            document.body.classList.remove('no-scroll');
+        };
+
+        const nextLightboxImage = () => {
+            activeLightboxIndex.value = (activeLightboxIndex.value + 1) % lightboxImages.value.length;
+        };
+
+        const prevLightboxImage = () => {
+            activeLightboxIndex.value = (activeLightboxIndex.value - 1 + lightboxImages.value.length) % lightboxImages.value.length;
+        };
+
+        // Dotyková gesta pro lightbox
+        let touchStartX = 0;
+        const handleTouchStart = (e) => { 
+            touchStartX = e.changedTouches[0].screenX; 
+        };
+        const handleTouchEnd = (e) => {
+            const touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 60) { // Práh 60px pro detekci swipe
+                if (diff > 0) nextLightboxImage(); else prevLightboxImage();
+            }
+        };
+
         const scrollToImage = (index) => {
             const el = appContainer.querySelector('.gallery-grid');
             if (!el) return;
@@ -377,6 +453,13 @@ async function initApp() {
         };
 
         // Propojení kalendáře s formulářem
+        // 1. Synchronizace: Kalendář -> Formulář (při kliknutí do mapy měsíců)
+        watch([selectedDateFrom, selectedDateTo], ([f, t]) => {
+            if (form.value.dateFrom !== f) form.value.dateFrom = f || '';
+            if (form.value.dateTo !== t) form.value.dateTo = t || '';
+        });
+
+        // 2. Synchronizace: Formulář -> Kalendář (při ručním zadání data v poli)
         watch([() => form.value.dateFrom, () => form.value.dateTo], ([f, t]) => {
             selectedDateFrom.value = f;
             selectedDateTo.value = t;
@@ -416,26 +499,63 @@ async function initApp() {
         const scrollTo = (id) => { isMenuOpen.value = false; document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }); };
         const submitForm = () => {
             // Automatické ověření před odesláním
-            if (!form.value.accommodation) {
-                alert("Prosím vyberte typ ubytování v ceníku.");
+            if (form.value.selectedAccommodations.length === 0) {
+                alert("Prosím vyberte alespoň jedno ubytování v ceníku.");
                 return;
             }
 
-            const accommodation = form.value.accommodation;
-            const isStillFree = !calendar.value[accommodation]?.some(p => 
-                p.from <= form.value.dateTo && p.to >= form.value.dateFrom
-            );
+            let isStillFree = true;
+            form.value.selectedAccommodations.forEach(acc => {
+                if (!isAvailable(acc)) {
+                    isStillFree = false;
+                    alert(`Omlouváme se, ale ${acc} byl právě obsazen.`);
+                }
+            });
 
             if (!isStillFree) {
-                alert(`Omlouváme se, ale ${accommodation} byl právě v tomto termínu obsazen. Vyberte si prosím jiný termín nebo chatku.`);
                 return;
             }
 
-            alert(`Děkujeme, poptávka odeslána.`);
-            form.value = { name: '', email: '', type: 'rodina', msg: '', dateFrom: '', dateTo: '', accommodation: '', nights: 1 };
+            // Příprava souhrnu ubytování pro zprávu
+            const accSummary = selectedAccommodationsSummary.value
+                .map(item => `- ${item.typ} (${item.price})`)
+                .join('\n');
+
+            // Sestavení kompletního těla zprávy pro odeslání
+            const fullMessage = `
+Nová poptávka od: ${form.value.name} (${form.value.email})
+Termín: ${selectedDateFrom.value} – ${selectedDateTo.value} (${nightsCount.value} nocí)
+Typ pobytu: ${form.value.type}
+
+Vybrané ubytování:
+${accSummary}
+
+Celková cena: ${totalPrice.value}
+
+Zpráva od klienta: ${form.value.msg}
+            `.trim();
+
+            console.log("Odesílaná data poptávky:", fullMessage);
+            alert(`Děkujeme, poptávka odeslána.\n\nSouhrn:\n${accSummary}\n\nCelkem: ${totalPrice.value}`);
+            
+            form.value = { name: '', email: '', type: 'rodina', msg: '', dateFrom: '', dateTo: '', selectedAccommodations: [], nights: 1 };
         };
 
-        return { isMenuOpen, showAllTrips, showAllGallery, showAllMenu, selectedDifficulty, selectedPersons, selectedDateFrom, selectedDateTo, isAvailable, selectAccommodation, selectCalendarDay, isDateSelected, isDateInRange, isPastDay, isPublicHoliday, isDatePartiallyOccupied, totalPrice, nightsCount, getStayPrice, getRoomImage, filteredTrips, displayTrips, filteredPrices, randomPhotos, data, form, scrollTo, submitForm, calendar, calendarMonth, calendarYear, monthNames, calendarDays, isDateOccupied, isToday, changeMonth, occupancySummary, activeGalleryIndex, handleGalleryScroll, scrollGallery, scrollToImage, startAutoplay, stopAutoplay, currency, displayPrice, activeSection, isNavHidden, multiMonthView, calendarTransition };
+        return { 
+            isMenuOpen, showAllTrips, showAllGallery, showAllMenu, selectedDifficulty, selectedPersons, 
+            selectedDateFrom, selectedDateTo, isAvailable, selectAccommodation: toggleAccommodationSelection, 
+            selectCalendarDay, isDateSelected, isDateInRange, isPastDay, isPublicHoliday, 
+            isDatePartiallyOccupied, totalPrice, nightsCount, getStayPrice, getRoomImage, 
+            filteredTrips, displayTrips, filteredPrices, randomPhotos, data, form, scrollTo, 
+            submitForm, calendar, calendarMonth, calendarYear, monthNames, calendarDays, 
+            isDateOccupied, isToday, changeMonth, occupancySummary, activeGalleryIndex, 
+            handleGalleryScroll, scrollGallery, scrollToImage, startAutoplay, stopAutoplay, 
+            currency, displayPrice, activeSection, isNavHidden, multiMonthView, 
+            calendarTransition, toggleAccommodationSelection, selectedAccommodationsSummary,
+            isLightboxOpen, lightboxImages, activeLightboxIndex, lightboxTitle,
+            openLightbox, closeLightbox, nextLightboxImage, prevLightboxImage,
+            handleTouchStart, handleTouchEnd
+        };
     }
     }).mount('#app');
 }

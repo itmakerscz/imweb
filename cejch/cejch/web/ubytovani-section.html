@@ -4,7 +4,7 @@
     <div class="grid-3">
         <div class="card" v-for="room in data.ubytovani" :key="room.title">
             <span class="card-tag">{{ room.price }}</span>
-            <img :src="room.img" :alt="room.title" loading="lazy">
+            <img :src="room.img" :alt="room.title" loading="lazy" @click="openLightbox(room)" class="clickable-image">
             <div class="card-content">
                 <h3>{{ room.title }}</h3>
                 <p>{{ room.desc }}</p>
