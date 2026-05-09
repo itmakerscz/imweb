@@ -562,6 +562,22 @@ input:focus, textarea:focus, select:focus { outline: none; border-color: var(--s
 
 footer { background: var(--primary); color: white; text-align: center; padding: 4rem 10%; margin-top: 4rem; }
 
+.footer-links {
+    margin-top: 1.5rem;
+}
+
+.footer-copyright {margin-top: 1.5rem;}
+
+.footer-links a {
+    padding: 0.4rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
 /* --- MEDIA QUERIES --- */
 
 /* Desktop Side-by-Side Layout */
@@ -642,7 +658,7 @@ footer { background: var(--primary); color: white; text-align: center; padding: 
     }
     .lang-switcher button { font-size: 1.8rem; padding: 10px; } /* Větší vlajky */
     .menu-grid, .contact-container, .form-row { grid-template-columns: 1fr; gap: 2rem; }
-    .calendar-header { flex-direction: column; align-items: center; text-align: center; gap: 1.5rem; }
+    .calendar-header {flex-direction: column; align-items: center; text-align: center; gap: 1.5rem; }
     .calendar-container { padding: 1rem; }
     .calendar-header .custom-select { width: 100%; }
     .calendar-grid { gap: 4px; }
